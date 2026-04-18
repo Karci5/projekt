@@ -1,0 +1,3 @@
+ALTER TABLE `chat_users`
+ADD COLUMN `is_online` TINYINT(1) NOT NULL DEFAULT 0,
+ADD COLUMN `last_active` DATETIME NULL;

@@ -24,13 +24,10 @@
         @mouseenter="onHover(true)"
         @mouseleave="onHover(false)"
       >
-      <!-- Reply preview box -->
+      <!-- Reply preview box (upravené) -->
       <div v-if="message.replyTo" class="reply-preview">
-        <div class="reply-line"></div>
-        <div class="reply-content">
-          <span class="reply-header">{{ replyHeaderText }}</span>
-          <span class="reply-text">{{ message.replyTo.message }}</span>
-        </div>
+        <span class="reply-header">{{ replyHeaderText }}</span>
+        <span class="reply-text">{{ message.replyTo.message }}</span>
       </div>
 
       <template v-if="hasImage || isDataImage">
@@ -49,7 +46,7 @@
       </template>
 
       <template v-else>
-        <div class="text-content">
+        <div class="message-content">
           <span v-html="linkedMessage"></span>
           <span v-if="message.edited" class="edited-label">· upravené</span>
         </div>
@@ -383,6 +380,32 @@ export default {
 </script>
 
 <style scoped>
+
+.reply-preview {
+  background: #fff7e6;
+  border-left: 4px solid #ffa726;
+  padding: 4px 8px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: #a67c00;
+  border-radius: 8px;
+  max-width: 90%;
+  word-break: break-word;
+  display: block;
+}
+.reply-header {
+  font-weight: 600;
+  margin-right: 6px;
+}
+.reply-text {
+  color: #a67c00;
+}
+.message-content {
+  font-size: 16px;
+  color: #222;
+  text-align: left;
+  padding: 2px 0;
+}
 
 .message-wrapper {
   display: flex;

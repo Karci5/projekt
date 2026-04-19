@@ -5,45 +5,6 @@
     </div>
     <div class="sidebar-body">
       <Tabs v-if="!hideTabs" :activeTab="activeTab" @change="$emit('change-tab', $event)" />
-
-      <div v-if="activeTab === 'chats'">
-        <FriendList
-          :friends="friends"
-          :nicknames="nicknames"
-          :show-presence="showPresence"
-          :presence-by-id="friendPresence"
-          @select="$emit('select-friend', $event)"
-        />
-        <GroupsList :groups="groups" @select="$emit('select-group', $event)" @create-group="$emit('create-group')" />
-      </div>
-      <div v-else-if="activeTab === 'friends'">
-        <div class="friends-controls">
-          <select :value="friendsFilter" @change="$emit('set-friends-filter', $event.target.value)">
-            <option value="all">Všetci</option>
-            <option value="blocked">Blokovaní</option>
-            <option value="muted">Stíšení</option>
-            <option value="online">Online</option>
-          </select>
-          <select :value="friendsSort" @change="$emit('set-friends-sort', $event.target.value)">
-            <option value="pinned">Pripnutí navrchu</option>
-            <option value="az">A-Z</option>
-            <option value="recent">Naposledy aktívni</option>
-          </select>
-        </div>
-        <FriendList
-          :friends="displayUsers"
-          :nicknames="nicknames"
-          :notes="friendNotes"
-          :show-options="true"
-          :show-presence="showPresence"
-          :friend-ids="friends.map(f => f.id)"
-          :pinned-ids="pinnedFriendIds"
-          :muted-ids="mutedFriendIds"
-          :blocked-ids="blockedFriendIds"
-          :presence-by-id="friendPresence"
-          @remove-friend="$emit('remove-friend', $event)"
-          @toggle-pin="$emit('toggle-pin-friend', $event)"
-          @toggle-mute="$emit('toggle-mute-friend', $event)"
           @toggle-block="$emit('toggle-block-friend', $event)"
           @view-profile="$emit('view-friend-profile', $event)"
           @edit-note="$emit('edit-friend-note', $event)"

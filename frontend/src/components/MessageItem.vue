@@ -483,16 +483,16 @@ export default {
   .message-wrapper {
     padding-left: 2vw;
     padding-right: 2vw;
-    gap: 8px;
+    gap: 12px;
   }
   .message-item {
-    max-width: 95vw;
-    min-width: 36px;
-    font-size: 15px;
-    padding: 10px 14px;
-    border-radius: 18px;
-    margin-bottom: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    max-width: 97vw;
+    min-width: 44px;
+    font-size: 18px;
+    padding: 16px 22px;
+    border-radius: 22px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     word-break: break-word;
   }
   .message-item.mine {
@@ -506,6 +506,11 @@ export default {
     margin-left: 0;
     background: var(--their-bubble, #fff0f3);
     color: var(--their-text, #000);
+  }
+  .edited-label {
+    font-size: 15px;
+    margin-left: 6px;
+    padding-left: 3px;
   }
 }
 

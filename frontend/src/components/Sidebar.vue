@@ -311,19 +311,25 @@ export default {
   }
 }
 
+
 .profile-footer {
-  margin-top: auto;
-  margin-bottom: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 8px 12px;
-  border-radius: 10px;
+  padding: 18px 12px 18px 12px;
+  border-radius: 0;
   background: #f7f8fa;
   cursor: pointer;
   transition: background 0.2s;
   flex-shrink: 0;
+  z-index: 10;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.03);
 }
 
 .profile-footer:hover {

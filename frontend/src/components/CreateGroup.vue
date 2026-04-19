@@ -41,8 +41,8 @@
 
         <div class="form-group" style="align-items:center;display:flex;flex-direction:column;gap:8px;">
           <label>Profilová fotka skupiny</label>
-          <div class="group-avatar-preview-circle" @click="$refs.avatarFileInput.click()" style="cursor:pointer;">
-            <img v-if="groupAvatarPreview" :src="groupAvatarPreview" alt="avatar" />
+          <div class="group-avatar-preview-circle" @click="$refs.avatarFileInput.click()" style="cursor:pointer;width:120px;height:120px;">
+            <img v-if="groupAvatarPreview" :src="groupAvatarPreview" alt="avatar" style="width:120px;height:120px;object-fit:cover;border-radius:50%;display:block;" />
             <span v-else style="font-size:2.5rem;color:#555;">{{ name ? name[0].toUpperCase() : '?' }}</span>
             <input ref="avatarFileInput" type="file" accept="image/*" style="display:none" @change="onAvatarSelected" />
             <button v-if="groupAvatarPreview" @click.stop="cancelAvatarPreview" style="position:absolute;top:2px;right:2px;background:#fff;border:none;border-radius:50%;width:28px;height:28px;box-shadow:0 2px 8px rgba(0,0,0,0.12);cursor:pointer;font-size:18px;">✕</button>

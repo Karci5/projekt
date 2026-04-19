@@ -393,19 +393,29 @@ export default {
 
 @media (max-width: 600px) {
   .message-wrapper {
-    padding-left: 8vw;
-    padding-right: 8vw;
-    gap: 6px;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    gap: 4px;
   }
-  .message-wrapper.mine {
-    justify-content: flex-end;
-    padding-left: 16vw;
+  .message-item {
+    max-width: 85vw;
+    min-width: 40px;
+    font-size: 14px;
+    padding: 7px 10px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .message-wrapper {
+    padding-left: 2vw;
     padding-right: 2vw;
   }
-  .message-wrapper.other {
-    justify-content: flex-start;
-    padding-left: 2vw;
-    padding-right: 16vw;
+  .message-item {
+    max-width: 95vw;
+    font-size: 13px;
+    padding: 5px 6px;
+    border-radius: 10px;
   }
 }
 

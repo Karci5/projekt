@@ -70,11 +70,11 @@
       </div>
 
       <template v-if="hasImage || isDataImage">
-        <img class="media-preview" :src="mediaSrc" alt="image" @click.stop="openLightbox" style="cursor:pointer" />
+        <img class="media-preview" :src="mediaSrc" alt="image" @click="openLightbox" style="cursor:pointer" />
       </template>
 
       <template v-else-if="hasVideo">
-        <video class="media-preview" :src="mediaSrc" controls playsinline @click.stop="openLightbox" style="cursor:pointer" />
+        <video class="media-preview" :src="mediaSrc" controls playsinline @click="openLightbox" style="cursor:pointer" />
       </template>
 
       <template v-else-if="isYouTube">
@@ -91,7 +91,7 @@
         </div>
       </template>
 
-      <div class="actions-area">
+      <div class="actions-area" @click.stop>
         <button class="reply-quick-btn" @click.stop="handleReply" aria-label="Odpovedať">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 14L4 9l5-5"/>
@@ -99,7 +99,7 @@
           </svg>
         </button>
         <button class="dots-btn" @click.stop="toggleMenu" aria-label="Menu" ref="dotsBtn">⋮</button>
-        <div v-if="menuOpen" :class="['actions-menu', menuBelow ? 'menu-below' : '']">
+        <div v-if="menuOpen" :class="['actions-menu', menuBelow ? 'menu-below' : '']" @click.stop>
             
           <div v-if="formattedTimeShort" class="actions-time">{{ formattedTimeShort }}</div>
           <button v-if="canCopy && !hasImage && !isDataImage && !hasVideo" class="text-btn" @click.stop="handleCopy">
@@ -143,9 +143,9 @@
     @click.self="closeLightbox"
     @keydown.esc="closeLightbox"
   >
-    <button class="lightbox-close" @click.stop="closeLightbox" aria-label="Zavrieť">✕</button>
-    <img v-if="hasImage || isDataImage" :src="mediaSrc" alt="image" class="lightbox-img" @click.stop />
-    <video v-else-if="hasVideo" :src="mediaSrc" class="lightbox-img" controls autoplay @click.stop style="max-width:96vw;max-height:96vh;border-radius:12px;box-shadow:0 8px 48px rgba(0,0,0,0.7);background:#222;"></video>
+    <button class="lightbox-close" @click="closeLightbox" aria-label="Zavrieť">✕</button>
+    <img v-if="hasImage || isDataImage" :src="mediaSrc" alt="image" class="lightbox-img" />
+    <video v-else-if="hasVideo" :src="mediaSrc" class="lightbox-img" controls autoplay style="max-width:96vw;max-height:96vh;border-radius:12px;box-shadow:0 8px 48px rgba(0,0,0,0.7);background:#222;"></video>
   </div>
 </template>
 

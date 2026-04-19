@@ -9,7 +9,7 @@
         />
       </template>
       <template v-else>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          background: var(--their-bubble, #e4e6eb);
           <circle cx="12" cy="12" r="10"/>
           <circle cx="12" cy="9" r="3"/>
           <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
@@ -500,11 +500,7 @@ export default {
     align-items: flex-start;
   }
 }
-    word-break: normal;
-    display: inline-flex;
-    align-items: center;
-  }
-}
+/* Odstránené rozbité CSS fragmenty, všetko potrebné je už vyššie. */
 .message-item.mine {
   background: var(--my-bubble, #1877f2);
   color: var(--my-text, #ffffff);

@@ -1,19 +1,13 @@
 <template>
   <div :class="['message-wrapper', message.mine ? 'mine' : 'other']">
-    <div v-if="!message.mine" class="message-avatar">
+    <div class="message-avatar">
       <template v-if="avatarSrc && !onAvatarError">
-        <img
-          :src="avatarSrc"
-          alt="Avatar"
-          @error="onAvatarError = true"
-        />
+        <img :src="avatarSrc" alt="Avatar" @error="onAvatarError = true" />
       </template>
       <template v-else>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/>
-          <circle cx="12" cy="9" r="3"/>
-          <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
-        </svg>
+        <span class="avatar-fallback-letter">
+          {{ (message.username || message.senderName || 'U')[0].toUpperCase() }}
+        </span>
       </template>
     </div>
 
@@ -383,6 +377,35 @@ export default {
 </script>
 
 <style scoped>
+/* Avatar pri správe */
+.message-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e4e6eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.message-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.avatar-fallback-letter {
+  font-size: 1.3rem;
+  color: #555;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
 
 .message-wrapper {
   display: flex;

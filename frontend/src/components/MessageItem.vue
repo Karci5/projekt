@@ -1,6 +1,6 @@
 @media (max-width: 600px) {
   .message-item.has-attachment {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: flex-end;
     width: auto;
@@ -11,12 +11,14 @@
   .message-item.has-attachment video {
     margin-bottom: 0;
     display: block;
+    max-width: 320px;
+    width: 100%;
   }
   .message-item.has-attachment .actions-area {
     position: static !important;
     display: flex;
     flex-direction: row;
-    width: auto;
+    width: 100%;
     justify-content: flex-end;
     align-items: center;
     margin-top: 8px;

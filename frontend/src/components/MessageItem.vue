@@ -472,18 +472,18 @@ export default {
 }
 
 .message-wrapper {
-    background: var(--their-bubble, #fff);
-  align-items: flex-end;
-  gap: clamp(6px, 1.5vw, 12px);
+  background: var(--their-bubble, #fff);
+  align-items: flex-start;
   width: 100%;
+  display: flex;
 }
 
 
 @media (max-width: 600px) {
   .message-wrapper {
-    padding-left: 2vw;
-    padding-right: 2vw;
-    gap: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 0;
   }
   .message-item {
     max-width: 97vw;
@@ -492,6 +492,8 @@ export default {
     padding: 16px 22px;
     border-radius: 22px;
     margin-bottom: 10px;
+    margin-left: 2vw;
+    margin-right: 2vw;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     word-break: break-word;
   }
@@ -516,9 +518,9 @@ export default {
 
 @media (max-width: 400px) {
   .message-wrapper {
-    padding-left: 1vw;
-    padding-right: 1vw;
-    gap: 6px;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 0;
   }
   .message-item {
     max-width: 99vw;
@@ -526,6 +528,8 @@ export default {
     padding: 8px 8px;
     border-radius: 14px;
     margin-bottom: 4px;
+    margin-left: 1vw;
+    margin-right: 1vw;
   }
 }
 

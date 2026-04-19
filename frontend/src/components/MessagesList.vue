@@ -1,11 +1,12 @@
 <template>
   <div class="messages" ref="list" @scroll="onScroll">
     <MessageItem
-      v-for="m in messages"
+      v-for="(m, i) in messages"
       :key="m.id || m.created_at"
       :message="m"
       :show-sender-name="showSenderName"
       :open-menu-id="openMenuId"
+      :show-avatar="shouldShowAvatar(i)"
       @edit="$emit('edit', m)"
       @delete="$emit('delete', m)"
       @open-menu="setOpenMenu"
@@ -15,6 +16,18 @@
 </template>
 
 <script>
+  computed: {
+    // Avatar sa zobrazí len pri prvej správe v bloku od daného používateľa
+  },
+  methods: {
+    shouldShowAvatar(idx) {
+      const m = this.messages[idx];
+      if (!m || m.mine) return false;
+      if (idx === 0) return true;
+      const prev = this.messages[idx - 1];
+      // Ak je predchádzajúca správa od iného používateľa, zobraz avatar
+      return !prev || prev.sender_id !== m.sender_id;
+    },
 import MessageItem from './MessageItem.vue'
 export default {
   props: {

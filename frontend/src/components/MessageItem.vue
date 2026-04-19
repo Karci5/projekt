@@ -1,6 +1,6 @@
 <template>
   <div :class="['message-wrapper', message.mine ? 'mine' : 'other']">
-    <div v-if="!message.mine" class="message-avatar">
+    <div v-if="!message.mine && showAvatar" class="message-avatar">
       <template v-if="avatarSrc && !onAvatarError">
         <img :src="avatarSrc" alt="Avatar" @error="onAvatarError = true" />
       </template>
@@ -110,7 +110,8 @@ export default {
   props: {
     message: { type: Object, required: true },
     showSenderName: { type: Boolean, default: false },
-    openMenuId: { type: [String, Number], default: null }
+    openMenuId: { type: [String, Number], default: null },
+    showAvatar: { type: Boolean, default: true }
   },
   data() {
     return {

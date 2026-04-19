@@ -2012,17 +2012,31 @@ export default {
     overflow: hidden;
 /* LEFT */
   .sidebar {
-    width: 400px;
+    width: 420px;
     background: #fff;
     border-right: 2px solid #d1d5db;
     border-left: none;
-    padding: 28px 22px 18px 22px;
+    padding: 28px 18px 18px 18px;
     overflow-y: auto;
     box-shadow: 4px 0 18px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #fff;
+  }
+  .sidebar::-webkit-scrollbar {
+    width: 8px;
+    background: #fff;
+  }
+  .sidebar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 8px;
+  }
     /* odstránime right: 0; */
 }
 

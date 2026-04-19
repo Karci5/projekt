@@ -87,8 +87,8 @@
         @keydown.esc="closeLightbox"
       >
         <button class="lightbox-close" @click="closeLightbox" aria-label="Zavrieť">✕</button>
-        <img v-if="hasImage || isDataImage" :src="mediaSrc" alt="image" class="lightbox-img" />
-        <video v-else-if="hasVideo" :src="mediaSrc" class="lightbox-img" controls autoplay style="max-width:96vw;max-height:96vh;border-radius:12px;box-shadow:0 8px 48px rgba(0,0,0,0.7);background:#222;"></video>
+        <img v-if="hasImage || isDataImage" :src="mediaSrc" alt="image" class="lightbox-img" style="display:block;margin:auto;max-width:96vw;max-height:96vh;object-fit:contain;box-shadow:none;" />
+        <video v-else-if="hasVideo" :src="mediaSrc" class="lightbox-img" controls autoplay style="display:block;margin:auto;max-width:96vw;max-height:96vh;object-fit:contain;border-radius:12px;box-shadow:none;background:#222;"></video>
       </div>
 
       <template v-else-if="isYouTube">

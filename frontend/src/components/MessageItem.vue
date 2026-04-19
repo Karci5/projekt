@@ -100,14 +100,7 @@
         </button>
         <button class="dots-btn" @click.stop="toggleMenu" aria-label="Menu" ref="dotsBtn">⋮</button>
         <div v-if="menuOpen" :class="['actions-menu', menuBelow ? 'menu-below' : '']">
-            data() {
-              return {
-                menuOpen: false,
-                lightboxOpen: false,
-                onAvatarError: false,
-                menuBelow: false
-              };
-            },
+            
           <div v-if="formattedTimeShort" class="actions-time">{{ formattedTimeShort }}</div>
           <button v-if="canCopy && !hasImage && !isDataImage && !hasVideo" class="text-btn" @click.stop="handleCopy">
             <span>Kopírovať</span>
@@ -163,13 +156,7 @@ export default {
     openMenuId: { type: [String, Number], default: null },
     showAvatar: { type: Boolean, default: true }
   },
-  data() {
-    return {
-      menuOpen: false,
-      lightboxOpen: false,
-      onAvatarError: false
-    };
-  },
+            
   computed: {
     senderName() {
       return this.message?.username || this.message?.senderName || 'Pouzivatel';
@@ -320,26 +307,6 @@ export default {
         this.$emit('open-menu', null);
       }
     },
-    /* Menu pod správou ak je blízko vrchu */
-    .actions-menu {
-      position: absolute;
-      right: 0;
-      bottom: 100%;
-      top: auto;
-      z-index: 10;
-      min-width: 140px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-      padding: 8px 0 8px 0;
-      margin-bottom: 8px;
-    }
-    .actions-menu.menu-below {
-      top: 100%;
-      bottom: auto;
-      margin-bottom: 0;
-      margin-top: 8px;
-    }
     extractYouTubeId(url) {
       if (!url) return null;
       const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{6,})/);

@@ -898,23 +898,6 @@ export default {
 .message-item:not(.mine) .reply-preview {
   border-left-color: rgba(0, 0, 0, 0.25);
 }
-
-  position: absolute;
-  left: 0;
-  right: auto;
-  bottom: calc(100% + 6px);
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  box-shadow: 0 16px 38px rgba(17, 24, 39, 0.2);
-  display: flex;
-  flex-direction: column;
-  min-width: 170px;
-  width: max-content;
-  max-width: min(220px, calc(100vw - 16px));
-  z-index: 40;
-  padding: 10px;
-}
 .message-item.mine .actions-menu {
   left: auto;
   right: 0;

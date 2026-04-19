@@ -62,13 +62,10 @@ export default {
   },
   methods: {
 
-  shouldShowAvatar(idx) {
-    const m = this.messages[idx];
-    if (!m || m.mine) return false;
-    if (idx === 0) return true;
-    const prev = this.messages[idx - 1];
-    // Ak je predchádzajúca správa od iného používateľa, zobraz avatar
-    return !prev || prev.sender_id !== m.sender_id;
+    shouldShowAvatar(idx) {
+      const m = this.messages[idx];
+      // Zobraz avatar pri každej správe, ktorá nie je moja
+      return m && !m.mine;
   },
   setOpenMenu(id) {
     this.openMenuId = id;

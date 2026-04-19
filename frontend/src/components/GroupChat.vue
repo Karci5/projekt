@@ -59,6 +59,7 @@
           </button>
           <button class="group-avatar-btn" @click.stop="openGroupAvatar" aria-label="Zväčšiť fotku skupiny">
             <img v-if="displayedGroupAvatar" :src="displayedGroupAvatar" alt="" />
+            <span v-else class="avatar-placeholder">{{ activeGroup.name ? activeGroup.name[0].toUpperCase() : '?' }}</span>
           </button>
           <span>{{ activeGroup.name }}</span>
         </div>
@@ -68,10 +69,11 @@
       </div>
 
       <!-- Overlay pre zväčšený avatar (funguje aj z navbaru) -->
-      <div v-if="avatarPreviewSrc" class="avatar-preview-overlay" @click="avatarPreviewSrc = ''">
+      <div v-if="avatarPreviewSrc || (activeGroup && activeGroup.name && !displayedGroupAvatar)" class="avatar-preview-overlay" @click="avatarPreviewSrc = ''">
         <div class="avatar-preview-box" @click.stop>
           <button class="avatar-preview-close" @click="avatarPreviewSrc = ''" aria-label="Zavrieť">✕</button>
-          <img :src="avatarPreviewSrc" alt="group avatar" />
+          <img v-if="avatarPreviewSrc" :src="avatarPreviewSrc" alt="group avatar" />
+          <span v-else class="avatar-fallback-letter" style="font-size:7vw;display:flex;align-items:center;justify-content:center;width:20vw;height:20vw;background:#eee;border-radius:50%;color:#333;">{{ activeGroup.name ? activeGroup.name[0].toUpperCase() : '?' }}</span>
         </div>
       </div>
 
@@ -283,8 +285,14 @@ export default {
     }
   },
       openGroupAvatar() {
+        console.log('openGroupAvatar called, displayedGroupAvatar:', this.displayedGroupAvatar);
         if (this.displayedGroupAvatar) {
           this.avatarPreviewSrc = this.displayedGroupAvatar;
+          console.log('avatarPreviewSrc set:', this.avatarPreviewSrc);
+        } else if (this.activeGroup && this.activeGroup.name) {
+          // fallback: zobraz písmeno v overlayi
+          this.avatarPreviewSrc = '';
+          console.log('No avatar image, fallback to letter:', this.activeGroup.name[0].toUpperCase());
         }
       },
   computed: {

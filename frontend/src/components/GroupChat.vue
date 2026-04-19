@@ -57,9 +57,13 @@
               <path d="M15 18l-6-6 6-6"/>
             </svg>
           </button>
-          <button class="group-avatar-btn" @click.stop="openGroupAvatar" aria-label="Zväčšiť fotku skupiny">
-            <img v-if="displayedGroupAvatar" :src="displayedGroupAvatar" alt="" />
-            <span v-else class="avatar-placeholder">{{ activeGroup.name ? activeGroup.name[0].toUpperCase() : '?' }}</span>
+          <button
+            v-if="displayedGroupAvatar"
+            class="group-avatar-btn"
+            @click.stop="openGroupAvatar"
+            aria-label="Zväčšiť fotku skupiny"
+          >
+            <img :src="displayedGroupAvatar" alt="" />
           </button>
           <span>{{ activeGroup.name }}</span>
         </div>
@@ -69,11 +73,10 @@
       </div>
 
       <!-- Overlay pre zväčšený avatar (funguje aj z navbaru) -->
-      <div v-if="avatarPreviewSrc || (activeGroup && activeGroup.name && !displayedGroupAvatar)" class="avatar-preview-overlay" @click="avatarPreviewSrc = ''">
+      <div v-if="avatarPreviewSrc" class="avatar-preview-overlay" @click="avatarPreviewSrc = ''">
         <div class="avatar-preview-box" @click.stop>
           <button class="avatar-preview-close" @click="avatarPreviewSrc = ''" aria-label="Zavrieť">✕</button>
-          <img v-if="avatarPreviewSrc" :src="avatarPreviewSrc" alt="group avatar" />
-          <span v-else class="avatar-fallback-letter" style="font-size:7vw;display:flex;align-items:center;justify-content:center;width:20vw;height:20vw;background:#eee;border-radius:50%;color:#333;">{{ activeGroup.name ? activeGroup.name[0].toUpperCase() : '?' }}</span>
+          <img :src="avatarPreviewSrc" alt="group avatar" />
         </div>
       </div>
 

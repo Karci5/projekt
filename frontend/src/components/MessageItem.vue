@@ -483,16 +483,16 @@ export default {
   .message-wrapper {
     padding-left: 2vw;
     padding-right: 2vw;
-    gap: 16px;
+    gap: 12px;
   }
   .message-item {
-    max-width: 99vw;
-    min-width: 54px;
-    font-size: 22px;
-    padding: 22px 28px;
-    border-radius: 28px;
-    margin-bottom: 14px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+    max-width: 97vw;
+    min-width: 44px;
+    font-size: 18px;
+    padding: 16px 22px;
+    border-radius: 22px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     word-break: break-word;
   }
   .message-item.mine {
@@ -508,9 +508,9 @@ export default {
     color: var(--their-text, #000);
   }
   .edited-label {
-    font-size: 18px;
-    margin-left: 8px;
-    padding-left: 4px;
+    font-size: 15px;
+    margin-left: 6px;
+    padding-left: 3px;
   }
 }
 
@@ -518,14 +518,14 @@ export default {
   .message-wrapper {
     padding-left: 1vw;
     padding-right: 1vw;
-    gap: 10px;
+    gap: 6px;
   }
   .message-item {
-    max-width: 100vw;
-    font-size: 18px;
-    padding: 14px 14px;
-    border-radius: 20px;
-    margin-bottom: 8px;
+    max-width: 99vw;
+    font-size: 13px;
+    padding: 8px 8px;
+    border-radius: 14px;
+    margin-bottom: 4px;
   }
 }
 

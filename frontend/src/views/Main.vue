@@ -2002,28 +2002,28 @@ export default {
 
 <style>
 
-.chat-layout {
-  display: flex;
-  flex-direction: row-reverse;
-  height: 100vh;
-  width: 100%;
-  max-width: 100%;
-  background: #f0f2f5;
-  overflow: hidden;
+  .chat-layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    background: #f0f2f5;
+    overflow: hidden;
 /* LEFT */
-.sidebar {
-  width: 400px;
-  background: #fff;
-  border-left: 2px solid #d1d5db;
-  border-right: none;
-  padding: 28px 22px 18px 22px;
-  overflow-y: auto;
-  box-shadow: -4px 0 18px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  right: 0;
-  position: relative;
+  .sidebar {
+    width: 400px;
+    background: #fff;
+    border-right: 2px solid #d1d5db;
+    border-left: none;
+    padding: 28px 22px 18px 22px;
+    overflow-y: auto;
+    box-shadow: 4px 0 18px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    /* odstránime right: 0; */
 }
 
 .tabs {

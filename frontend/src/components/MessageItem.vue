@@ -899,7 +899,6 @@ export default {
   border-left-color: rgba(0, 0, 0, 0.25);
 }
 
-.actions-menu {
   position: absolute;
   left: 0;
   right: auto;
@@ -914,8 +913,6 @@ export default {
   width: max-content;
   max-width: min(220px, calc(100vw - 16px));
   z-index: 40;
-  overflow-y: auto;
-  max-height: 180px;
   padding: 10px;
 }
 .message-item.mine .actions-menu {

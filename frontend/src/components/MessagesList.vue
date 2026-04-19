@@ -61,13 +61,40 @@ export default {
     this.prevMessagesLength = this.messages.length;
   },
   methods: {
-    shouldShowAvatar(idx) {
-      const m = this.messages[idx];
-      if (!m || m.mine) return false;
-      if (idx === 0) return true;
-      const prev = this.messages[idx - 1];
-      // Ak je predchádzajúca správa od iného používateľa, zobraz avatar
-      return !prev || prev.sender_id !== m.sender_id;
+
+  shouldShowAvatar(idx) {
+    const m = this.messages[idx];
+    if (!m || m.mine) return false;
+    if (idx === 0) return true;
+    const prev = this.messages[idx - 1];
+    // Ak je predchádzajúca správa od iného používateľa, zobraz avatar
+    return !prev || prev.sender_id !== m.sender_id;
+  },
+  setOpenMenu(id) {
+    this.openMenuId = id;
+  },
+  scrollToBottom(animate = true) {
+    const el = this.$refs.list;
+    if (!el) return;
+    if (animate && el.scrollTo) {
+      el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+    } else {
+      el.scrollTop = el.scrollHeight;
+    }
+  },
+  onScroll() {
+    const el = this.$refs.list;
+    if (!el) return;
+    const distanceFromBottom = el.scrollHeight - (el.scrollTop + el.clientHeight);
+    const threshold = 100;
+    if (distanceFromBottom < threshold) this.newMessagesCount = 0;
+  },
+  jumpToLatest() {
+    this.scrollToBottom(true);
+    this.newMessagesCount = 0;
+  }
+  }
+}
 </script>
 
 <style scoped>

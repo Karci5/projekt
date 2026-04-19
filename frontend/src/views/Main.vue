@@ -2067,9 +2067,7 @@ export default {
   flex-direction: column;
 }
 
-.profile-overlay {
-  /* Profile overlay remains unchanged, but profile section in sidebar is now right-aligned */
-}
+
 
 .profile-dialog {
   width: min(92vw, 360px);

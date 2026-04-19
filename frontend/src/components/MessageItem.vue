@@ -21,6 +21,8 @@
     right: 0;
     transform: none;
     width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
     justify-content: flex-end;
     align-items: center;
     margin-top: 2px;
@@ -29,6 +31,7 @@
     gap: 2px;
     background: transparent;
     z-index: 2;
+    overflow-x: auto;
   }
 }
 <template>

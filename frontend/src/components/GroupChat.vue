@@ -19,6 +19,14 @@
         </div>
       </div>
 
+      <!-- Overlay pre zväčšený avatar (funguje aj z navbaru) -->
+      <div v-if="avatarPreviewSrc" class="avatar-preview-overlay" @click="avatarPreviewSrc = ''">
+        <div class="avatar-preview-box" @click.stop>
+          <button class="avatar-preview-close" @click="avatarPreviewSrc = ''" aria-label="Zavrieť">✕</button>
+          <img :src="avatarPreviewSrc" alt="group avatar" />
+        </div>
+      </div>
+
       <!-- Side panel -->
       <transition name="panel-slide">
         <div v-if="headerMenuOpen" class="side-panel" @click.stop>

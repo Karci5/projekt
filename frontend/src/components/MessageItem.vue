@@ -926,14 +926,7 @@ export default {
   left: 0;
   right: auto;
 }
-.actions-menu.menu-below {
-  top: 100%;
-  bottom: auto;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
-  line-height: 1.2;
-}
+
 
 /* Force-remove focus outline/background only on media elements */
 .message-item.has-attachment img,

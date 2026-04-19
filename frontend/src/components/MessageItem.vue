@@ -477,8 +477,9 @@ export default {
   border-radius: 18px;
   max-width: 80vw;
   min-width: 48px;
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   white-space: pre-line;
   overflow-wrap: normal;
   word-break: normal;
@@ -490,13 +491,15 @@ export default {
 
 @media (max-width: 600px) {
   .message-item {
-    max-width: 90vw;
-    min-width: 44px;
+    max-width: 95vw;
+    min-width: 36px;
     font-size: 14px;
-    padding: 7px 10px;
-    border-radius: 16px;
-    white-space: pre-line;
-    overflow-wrap: normal;
+    padding: 7px 8px;
+    border-radius: 13px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
     word-break: normal;
     display: inline-flex;
     align-items: center;
@@ -509,14 +512,16 @@ export default {
   margin-left: auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 400px) {
   .message-item {
-    max-width: 95vw;
-    font-size: 14px;
-    padding: 7px 8px;
+    max-width: 99vw;
+    font-size: 13px;
+    padding: 4px 4px;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
-
 
 .has-attachment { background:transparent; padding:0; border-radius:8px; width: fit-content; max-width: 320px; }
 .media-preview { display:block; width: auto; max-width: 320px; height: auto; max-height: 320px; object-fit:contain; object-position:center; background:#f5f6f8; border-radius:8px }

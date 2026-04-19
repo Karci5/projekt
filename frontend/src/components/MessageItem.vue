@@ -1,3 +1,17 @@
+@media (max-width: 600px) {
+  .message-item.has-attachment .actions-area {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    width: 100%;
+    justify-content: flex-end;
+    z-index: 1;
+  }
+}
 <template>
   <div :class="['message-wrapper', message.mine ? 'mine' : 'other']">
     <div v-if="!message.mine && showAvatar" class="message-avatar">

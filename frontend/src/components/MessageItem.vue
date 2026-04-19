@@ -17,21 +17,27 @@
   .message-item.has-attachment .actions-area {
     position: relative !important;
     top: 0;
-    left: 0;
-    right: 0;
-    transform: none;
     width: 100%;
     max-width: 320px;
     box-sizing: border-box;
-    justify-content: flex-end;
     align-items: center;
     margin-top: 2px;
     margin-bottom: 0;
-    padding: 0 2px 0 0;
     gap: 2px;
     background: transparent;
     z-index: 2;
     overflow-x: auto;
+    padding: 0 2px 0 2px;
+  }
+  .message-item.has-attachment.mine .actions-area {
+    justify-content: flex-start;
+    left: 0;
+    right: auto;
+  }
+  .message-item.has-attachment:not(.mine) .actions-area {
+    justify-content: flex-end;
+    right: 0;
+    left: auto;
   }
 }
 <template>

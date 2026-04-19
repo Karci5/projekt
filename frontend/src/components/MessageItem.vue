@@ -70,11 +70,33 @@
       </div>
 
       <template v-if="hasImage || isDataImage">
-        <img class="media-preview" :src="mediaSrc" alt="image" />
+        <img class="media-preview" :src="mediaSrc" alt="image" @click="openLightbox" style="cursor:pointer" />
       </template>
 
       <template v-else-if="hasVideo">
-        <video class="media-preview" :src="mediaSrc" controls playsinline />
+        <video class="media-preview" :src="mediaSrc" controls playsinline @click="openLightbox" style="cursor:pointer" />
+        <!-- Lightbox overlay -->
+        <div
+          v-if="lightboxOpen"
+          class="lightbox-overlay"
+          tabindex="0"
+          ref="lightbox"
+          @click.self="closeLightbox"
+          @keydown.esc="closeLightbox"
+        >
+          <button class="lightbox-close" @click="closeLightbox" aria-label="Zavrieť">✕</button>
+          <img v-if="hasImage || isDataImage" :src="mediaSrc" alt="image" class="lightbox-img" />
+          <video v-else-if="hasVideo" :src="mediaSrc" class="lightbox-img" controls autoplay style="max-width:96vw;max-height:96vh;border-radius:12px;box-shadow:0 8px 48px rgba(0,0,0,0.7);background:#222;"></video>
+        </div>
+          openLightbox() {
+            this.lightboxOpen = true;
+            this.$nextTick(() => {
+              if (this.$refs.lightbox) this.$refs.lightbox.focus();
+            });
+          },
+          closeLightbox() {
+            this.lightboxOpen = false;
+          },
       </template>
 
       <template v-else-if="isYouTube">

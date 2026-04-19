@@ -222,6 +222,7 @@ export default {
 }
 </script>
 
+
 <style scoped>
 
 .sidebar { 
@@ -239,12 +240,23 @@ export default {
 }
 
 .sidebar-body {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.profile-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .friends-controls {

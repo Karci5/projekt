@@ -48,22 +48,6 @@
             <button v-if="groupAvatarPreview" @click.stop="cancelAvatarPreview" style="position:absolute;top:2px;right:2px;background:#fff;border:none;border-radius:50%;width:28px;height:28px;box-shadow:0 2px 8px rgba(0,0,0,0.12);cursor:pointer;font-size:18px;">✕</button>
           </div>
           <button class="btn-upload-avatar" type="button" @click="$refs.avatarFileInput.click()">Pridať profilovú fotku</button>
-        /* Štýl pre tlačidlo pod avatarom */
-        .btn-upload-avatar {
-          margin-top: 10px;
-          padding: 8px 18px;
-          background: #1877f2;
-          color: #fff;
-          border: none;
-          border-radius: 8px;
-          font-size: 15px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background 0.15s;
-        }
-        .btn-upload-avatar:hover {
-          background: #166fe5;
-        }
         </div>
         
         <div class="form-group">

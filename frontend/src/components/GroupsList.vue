@@ -15,13 +15,8 @@
       @click="$emit('select', group)"
     >
       <div class="group-avatar" @click.stop="openGroupAvatar(group)">
-        <img v-if="group.avatar" :src="group.avatar" alt="" />
-        <template v-else-if="group.members && group.members.length > 0 && group.members[0].profile_picture">
-          <img :src="group.members[0].profile_picture" alt="member avatar" />
-        </template>
-        <template v-else>
-          <span>{{ group.name ? group.name[0].toUpperCase() : '?' }}</span>
-        </template>
+        <img v-if="group.avatar || group.profile_picture || group.group_avatar" :src="group.avatar || group.profile_picture || group.group_avatar" alt="group avatar" />
+        <span v-else>{{ group.name ? group.name[0].toUpperCase() : '?' }}</span>
       </div>
       <div class="group-info">
         <div class="group-name">{{ group.name }}</div>

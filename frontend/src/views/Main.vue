@@ -2000,21 +2000,28 @@ export default {
 </script>
 
 <style>
+
 .chat-layout {
   display: flex;
+  flex-direction: row-reverse;
   height: 100vh;
   width: 100%;
   max-width: 100%;
   background: #f0f2f5;
   overflow: hidden;
-
+}
 /* LEFT */
 .sidebar {
-  width: 260px;
+  width: 320px;
   background: #fff;
-  border-right: 1px solid #ddd;
-  padding: 10px;
+  border-left: 1px solid #ddd;
+  border-right: none;
+  padding: 18px 14px 14px 14px;
   overflow-y: auto;
+  box-shadow: -2px 0 12px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .tabs {
@@ -2061,13 +2068,7 @@ export default {
 }
 
 .profile-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1200;
+  /* Profile overlay remains unchanged, but profile section in sidebar is now right-aligned */
 }
 
 .profile-dialog {

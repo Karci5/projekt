@@ -101,7 +101,7 @@
       <template v-else>
         <div class="text-content">
           <span v-html="linkedMessage"></span>
-          <span v-if="message.edited" class="edited-label">· upravené</span>
+            <span v-if="message.edited" class="edited-label"> · upravené</span>
         </div>
       </template>
 
@@ -733,6 +733,26 @@ export default {
 .text-content :deep(.msg-link) { color: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; word-break: break-all; }
 .text-content :deep(.msg-link:hover) { opacity: 0.8; }
 .edited-label { font-size:12px; color: rgba(0,0,0,0.5); }
+      .edited-label {
+        font-size: 12px;
+        color: #fff8;
+        font-weight: 400;
+        margin-left: 4px;
+        padding-left: 2px;
+        letter-spacing: 0.01em;
+        vertical-align: middle;
+        opacity: 0.7;
+        user-select: none;
+        transition: opacity 0.18s;
+      }
+      .message-item.mine .edited-label {
+        color: #fff8;
+        opacity: 0.7;
+      }
+      .message-item:not(.mine) .edited-label {
+        color: #0007;
+        opacity: 0.6;
+      }
 
 .message-item.mine .edited-label { color: rgba(255,255,255,0.8); }
 

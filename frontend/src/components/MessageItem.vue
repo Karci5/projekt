@@ -1,22 +1,9 @@
 @media (max-width: 600px) {
-  .message-item.has-attachment .actions-area {
-    position: static !important;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 8px;
-    margin-bottom: 0;
-    padding: 0 2px;
-    z-index: 1;
-    background: transparent;
-  }
   .message-item.has-attachment {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    width: fit-content;
+    width: auto;
     max-width: 98vw;
   }
   .message-item.has-attachment .media-preview,
@@ -24,6 +11,19 @@
   .message-item.has-attachment video {
     margin-bottom: 0;
     display: block;
+  }
+  .message-item.has-attachment .actions-area {
+    position: static !important;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 0;
+    padding: 0;
+    z-index: 1;
+    background: transparent;
   }
 }
 <template>

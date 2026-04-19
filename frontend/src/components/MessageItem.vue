@@ -26,6 +26,7 @@
     padding: 0;
     z-index: 1;
     background: transparent;
+    box-sizing: border-box;
   }
 }
 <template>

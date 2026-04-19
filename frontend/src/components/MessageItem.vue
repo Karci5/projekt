@@ -101,7 +101,7 @@
       <template v-else>
         <div class="text-content">
           <span v-html="linkedMessage"></span>
-            <span v-if="message.edited" class="edited-label"> · upravené</span>
+            <span v-if="message.edited" class="edited-label">upravené</span>
         </div>
       </template>
 

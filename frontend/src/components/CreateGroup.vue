@@ -105,7 +105,7 @@
       
       <div class="modal-footer">
         <button class="btn-cancel" @click="$emit('close')">Zrušiť</button>
-        <button class="btn-create" @click="create" :disabled="!name || selectedMemberObjects.length === 0">Vytvoriť</button>
+        <button class="btn-create" type="button" @click="create" :disabled="!name || selectedMemberObjects.length === 0 || pending">Vytvoriť</button>
       </div>
     </div>
   </div>
@@ -123,7 +123,8 @@ export default {
       selectedMembers: [],
       memberQuery: '',
       groupAvatarPreview: null,
-      pendingAvatarData: null
+      pendingAvatarData: null,
+      pending: false
     }
   },
   computed: {
@@ -195,13 +196,17 @@ export default {
       this.selectedMembers = this.selectedMembers.filter(v => String(v) !== String(id));
     },
     create() {
+      if (this.pending) return;
       const trimmedName = String(this.name || '').trim();
       if (!trimmedName) return;
+      this.pending = true;
       this.$emit('create', {
         name: trimmedName,
         members: this.selectedMembers,
         avatar: this.pendingAvatarData
       });
+      // Reset pending after short delay (modal closes on success)
+      setTimeout(() => { this.pending = false; }, 2000);
     }
   }
 }

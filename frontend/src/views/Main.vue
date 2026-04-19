@@ -2163,6 +2163,17 @@ html.dark-mode .undo-toast {
   background: white;
   border-bottom: 1px solid #ddd;
   font-weight: bold;
+  font-size: 22px;
+}
+
+@media (max-width: 600px) {
+  .chat-header {
+    padding: 28px 0 28px 0;
+    font-size: 28px;
+    min-height: 64px;
+    letter-spacing: 0.01em;
+  }
+}
 }
 
 .messages {

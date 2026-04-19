@@ -1,6 +1,6 @@
 <template>
   <div :class="['message-wrapper', message.mine ? 'mine' : 'other']">
-    <div class="message-avatar">
+    <div v-if="!message.mine" class="message-avatar">
       <template v-if="avatarSrc && !onAvatarError">
         <img :src="avatarSrc" alt="Avatar" @error="onAvatarError = true" />
       </template>

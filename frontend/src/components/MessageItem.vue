@@ -15,18 +15,20 @@
     width: 100%;
   }
   .message-item.has-attachment .actions-area {
-    position: static !important;
-    display: flex;
-    flex-direction: row;
+    position: relative !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 8px;
+    margin-top: 2px;
     margin-bottom: 0;
-    padding: 0;
-    z-index: 1;
+    padding: 0 2px 0 0;
+    gap: 2px;
     background: transparent;
-    box-sizing: border-box;
+    z-index: 2;
   }
 }
 <template>

@@ -669,25 +669,6 @@ export default {
 .message-item.mine .actions-area { right: calc(100% + 8px); left: auto; }
 .message-item:not(.mine) .actions-area { left: calc(100% + 8px); right: auto; }
 
-@media (max-width: 600px) {
-  .actions-area {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-    margin-top: 6px;
-    margin-bottom: 2px;
-    width: 100%;
-    justify-content: flex-end;
-    z-index: 1;
-  }
-  .message-item.mine .actions-area,
-  .message-item:not(.mine) .actions-area {
-    right: auto !important;
-    left: auto !important;
-  }
-}
 .dots-btn {
   width: 28px;
   height: 28px;

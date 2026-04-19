@@ -64,7 +64,7 @@ export default {
 
     shouldShowAvatar(idx) {
       const m = this.messages[idx];
-      // Zobraz avatar pri každej správe, ktorá nie je moja
+      // Avatar len pri správach iných používateľov
       return m && !m.mine;
   },
   setOpenMenu(id) {

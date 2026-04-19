@@ -2007,7 +2007,6 @@ export default {
   max-width: 100%;
   background: #f0f2f5;
   overflow: hidden;
-}
 
 /* LEFT */
 .sidebar {

@@ -292,12 +292,19 @@ export default {
       this.menuOpen = next;
       if (next) {
         this.$nextTick(() => {
-          // Zisti pozíciu správy na obrazovke
           const btn = this.$refs.dotsBtn;
           if (btn && btn.getBoundingClientRect) {
             const rect = btn.getBoundingClientRect();
-            // Ak je blízko vrchu (napr. menej ako 120px od vrchu), menu sa otvorí dole
-            this.menuBelow = rect.top < 120;
+            const menuHeight = 180; // Odhadovaná výška menu v px
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            // Ak je málo miesta nad správou, otvor menu dole, inak hore
+            if (rect.top < menuHeight + 16) {
+              this.menuBelow = true;
+            } else if (viewportHeight - rect.bottom < menuHeight + 16) {
+              this.menuBelow = false;
+            } else {
+              this.menuBelow = false;
+            }
           } else {
             this.menuBelow = false;
           }
@@ -892,36 +899,39 @@ export default {
   border-left-color: rgba(0, 0, 0, 0.25);
 }
 
-.reply-line {
-  display: none !important;
-}
-
-.reply-content {
+.actions-menu {
+  position: absolute;
+  left: 0;
+  right: auto;
+  bottom: calc(100% + 6px);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 16px 38px rgba(17, 24, 39, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  overflow: hidden;
-  flex: 1;
-  min-width: 0;
+  min-width: 170px;
+  width: max-content;
+  max-width: min(220px, calc(100vw - 16px));
+  z-index: 40;
+  overflow-y: auto;
+  max-height: 180px;
+  padding: 10px;
 }
-
-.reply-header {
-  font-weight: 600;
-  opacity: 0.9;
-  font-size: 11px;
-  line-height: 1.15;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.message-item.mine .actions-menu {
+  left: auto;
+  right: 0;
 }
-
-.reply-text {
-  opacity: 0.95;
-  font-weight: 400;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 13px;
+.message-item:not(.mine) .actions-menu {
+  left: 0;
+  right: auto;
+}
+.actions-menu.menu-below {
+  top: 100%;
+  bottom: auto;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
   line-height: 1.2;
 }
 

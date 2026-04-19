@@ -223,12 +223,13 @@ export default {
         confirmText: 'Áno',
         cancelText: 'Zrušiť',
         onConfirm: null
-      }
+      },
     };
   },
 
   computed: {
     filteredUsers() {
+    /* odstránená zbytočná zátvorka po media query */
       const search = this.searchUser.toLowerCase();
       return this.allUsers.filter(user =>
         user.username.toLowerCase().includes(search)
@@ -2009,7 +2010,6 @@ export default {
   max-width: 100%;
   background: #f0f2f5;
   overflow: hidden;
-}
 /* LEFT */
 .sidebar {
   width: 400px;

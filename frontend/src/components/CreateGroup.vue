@@ -1,3 +1,18 @@
+/* Fallback znak (otáznik/písmeno) v kruhu */
+.group-avatar-preview-circle .avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3.5rem;
+  color: #555;
+  font-weight: 600;
+  user-select: none;
+  letter-spacing: 1px;
+  background: transparent;
+  border-radius: 50%;
+}
 /* Avatar skupiny v kruhu, 120x120px, biely okraj, tieň */
 .group-avatar-preview-circle {
   width: 120px;

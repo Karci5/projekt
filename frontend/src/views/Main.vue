@@ -2038,7 +2038,7 @@ export default {
     border-radius: 8px;
   }
     /* odstránime right: 0; */
-}
+/* odstránená nadbytočná zátvorka spôsobujúca chybu */
 
 .tabs {
   display: flex;

@@ -472,7 +472,6 @@ export default {
 }
 
 .message-wrapper {
-  background: var(--their-bubble, #fff);
   align-items: flex-start;
   width: 100%;
   display: flex;

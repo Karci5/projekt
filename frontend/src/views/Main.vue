@@ -2012,16 +2012,18 @@ export default {
 }
 /* LEFT */
 .sidebar {
-  width: 320px;
+  width: 400px;
   background: #fff;
-  border-left: 1px solid #ddd;
+  border-left: 2px solid #d1d5db;
   border-right: none;
-  padding: 18px 14px 14px 14px;
+  padding: 28px 22px 18px 22px;
   overflow-y: auto;
-  box-shadow: -2px 0 12px rgba(0,0,0,0.03);
+  box-shadow: -4px 0 18px rgba(0,0,0,0.06);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  right: 0;
+  position: relative;
 }
 
 .tabs {

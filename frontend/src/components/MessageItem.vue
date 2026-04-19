@@ -466,13 +466,13 @@ export default {
   font-weight: bold;
   display: flex;
   align-items: center;
-  justify-content: center;
+    background: var(--my-bubble, #1877f2);
   width: 100%;
   height: 100%;
 }
 
 .message-wrapper {
-  display: flex;
+    background: var(--their-bubble, #fff);
   align-items: flex-end;
   gap: clamp(6px, 1.5vw, 12px);
   width: 100%;
@@ -483,16 +483,16 @@ export default {
   .message-wrapper {
     padding-left: 2vw;
     padding-right: 2vw;
-    gap: 12px;
+    gap: 16px;
   }
   .message-item {
-    max-width: 97vw;
-    min-width: 44px;
-    font-size: 18px;
-    padding: 16px 22px;
-    border-radius: 22px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    max-width: 99vw;
+    min-width: 54px;
+    font-size: 22px;
+    padding: 22px 28px;
+    border-radius: 28px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.09);
     word-break: break-word;
   }
   .message-item.mine {
@@ -508,9 +508,9 @@ export default {
     color: var(--their-text, #000);
   }
   .edited-label {
-    font-size: 15px;
-    margin-left: 6px;
-    padding-left: 3px;
+    font-size: 18px;
+    margin-left: 8px;
+    padding-left: 4px;
   }
 }
 
@@ -518,14 +518,14 @@ export default {
   .message-wrapper {
     padding-left: 1vw;
     padding-right: 1vw;
-    gap: 6px;
+    gap: 10px;
   }
   .message-item {
-    max-width: 99vw;
-    font-size: 13px;
-    padding: 8px 8px;
-    border-radius: 14px;
-    margin-bottom: 4px;
+    max-width: 100vw;
+    font-size: 18px;
+    padding: 14px 14px;
+    border-radius: 20px;
+    margin-bottom: 8px;
   }
 }
 

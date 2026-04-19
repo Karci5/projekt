@@ -74,7 +74,7 @@
       </template>
 
       <template v-else-if="hasVideo">
-        <video class="media-preview" :src="mediaSrc" controls playsinline></video>
+        <video class="media-preview" :src="mediaSrc" controls playsinline @click.stop="openLightbox" style="cursor:pointer" />
       </template>
 
       <template v-else-if="isYouTube">
@@ -144,7 +144,8 @@
     @keydown.esc="closeLightbox"
   >
     <button class="lightbox-close" @click.stop="closeLightbox" aria-label="Zavrieť">✕</button>
-    <img :src="mediaSrc" alt="image" class="lightbox-img" @click.stop />
+    <img v-if="hasImage || isDataImage" :src="mediaSrc" alt="image" class="lightbox-img" @click.stop />
+    <video v-else-if="hasVideo" :src="mediaSrc" class="lightbox-img" controls autoplay @click.stop style="max-width:96vw;max-height:96vh;border-radius:12px;box-shadow:0 8px 48px rgba(0,0,0,0.7);background:#222;"></video>
   </div>
 </template>
 

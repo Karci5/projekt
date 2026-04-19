@@ -9,7 +9,7 @@
               <path d="M15 18l-6-6 6-6"/>
             </svg>
           </button>
-          <button class="group-avatar-btn" @click="triggerAvatarSelect" aria-label="Zmeniť fotku skupiny">
+          <button v-if="isGroupAdmin" class="group-avatar-btn" @click="triggerAvatarSelect" aria-label="Zmeniť fotku skupiny">
             <img v-if="displayedGroupAvatar" :src="displayedGroupAvatar" alt="" />
           </button>
           <span>{{ activeGroup.name }}</span>
@@ -27,7 +27,7 @@
             <span class="side-panel-close" role="button" tabindex="-1" @click="headerMenuOpen = false">✕</span>
           </div>
           <div class="side-panel-avatar">
-            <button class="side-panel-avatar-btn" @click="triggerAvatarSelect">
+            <button v-if="isGroupAdmin" class="side-panel-avatar-btn" @click="triggerAvatarSelect">
               <img v-if="displayedGroupAvatar" :src="displayedGroupAvatar" alt="" />
               <span v-else class="avatar-placeholder">{{ activeGroup.name ? activeGroup.name[0].toUpperCase() : '?' }}</span>
             </button>
@@ -63,6 +63,7 @@
       </transition>
 
       <input
+        v-if="isGroupAdmin"
         type="file"
         ref="groupAvatarInput"
         accept="image/*"

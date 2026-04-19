@@ -70,11 +70,11 @@
       </div>
 
       <template v-if="hasImage || isDataImage">
-        <img class="media-preview" :src="mediaSrc" alt="image" @click="openLightbox" style="cursor:pointer" />
+        <img class="media-preview" :src="mediaSrc" alt="image" />
       </template>
 
       <template v-else-if="hasVideo">
-        <video class="media-preview" :src="mediaSrc" controls playsinline @click="openLightbox" style="cursor:pointer" />
+        <video class="media-preview" :src="mediaSrc" controls playsinline />
       </template>
 
       <template v-else-if="isYouTube">
@@ -99,7 +99,7 @@
           </svg>
         </button>
         <button class="dots-btn" @click.stop="toggleMenu" aria-label="Menu" ref="dotsBtn">⋮</button>
-        <div v-if="menuOpen" :class="['actions-menu', menuBelow ? 'menu-below' : '']" @click.stop>
+        <div v-if="menuOpen" :class="['actions-menu', menuBelow ? 'menu-below' : '']" @click.stop style="z-index:10001; pointer-events:auto">
             
           <div v-if="formattedTimeShort" class="actions-time">{{ formattedTimeShort }}</div>
           <button v-if="canCopy && !hasImage && !isDataImage && !hasVideo" class="text-btn" @click.stop="handleCopy">
@@ -134,19 +134,7 @@
     </div>
   </div>
 
-  <!-- Lightbox overlay -->
-  <div
-    v-if="lightboxOpen"
-    class="lightbox-overlay"
-    tabindex="0"
-    ref="lightbox"
-    @click.self="closeLightbox"
-    @keydown.esc="closeLightbox"
-  >
-    <button class="lightbox-close" @click="closeLightbox" aria-label="Zavrieť">✕</button>
-    <img v-if="hasImage || isDataImage" :src="mediaSrc" alt="image" class="lightbox-img" />
-    <video v-else-if="hasVideo" :src="mediaSrc" class="lightbox-img" controls autoplay style="max-width:96vw;max-height:96vh;border-radius:12px;box-shadow:0 8px 48px rgba(0,0,0,0.7);background:#222;"></video>
-  </div>
+
 </template>
 
 <script>
@@ -420,15 +408,7 @@ export default {
       this.$emit('open-menu', null);
       this.$emit('delete', this.message);
     },
-    openLightbox() {
-      this.lightboxOpen = true;
-      this.$nextTick(() => {
-        if (this.$refs.lightbox) this.$refs.lightbox.focus();
-      });
-    },
-    closeLightbox() {
-      this.lightboxOpen = false;
-    }
+    // lightbox funkcie odstránené
   }
 }
 </script>
@@ -800,7 +780,8 @@ export default {
   min-width: 170px;
   width: max-content;
   max-width: min(220px, calc(100vw - 16px));
-  z-index: 40;
+  z-index: 10001;
+  pointer-events: auto;
   overflow: visible;
   padding: 10px;
 }

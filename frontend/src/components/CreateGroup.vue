@@ -1,3 +1,85 @@
+/* --- Vylepšený skupinový avatar upload --- */
+.group-avatar-preview-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  position: relative;
+  margin: 0 auto 16px auto;
+  transition: box-shadow 0.18s, border 0.18s;
+  cursor: pointer;
+}
+.group-avatar-preview-circle:hover {
+  box-shadow: 0 12px 32px rgba(24,119,242,0.18);
+  border: 4px solid #1877f2;
+}
+.avatar-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  transition: opacity 0.2s;
+}
+.avatar-fallback {
+  font-size: 3.2rem;
+  color: #555;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+.avatar-cancel-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 2;
+  transition: background 0.15s;
+}
+.avatar-cancel-btn:hover {
+  background: #f3f4f6;
+}
+.avatar-upload-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s;
+  background: rgba(255,255,255,0.08);
+}
+.group-avatar-preview-circle:hover .avatar-upload-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+.avatar-upload-overlay svg {
+  opacity: 0.85;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 /* Avatar skupiny v kruhu, 120x120px, biely okraj, tieň */
 .group-avatar-preview-circle {
   width: 120px;
@@ -41,11 +123,14 @@
 
         <div class="form-group" style="align-items:center;display:flex;flex-direction:column;gap:8px;">
           <label>Profilová fotka skupiny</label>
-          <div class="group-avatar-preview-circle" @click="$refs.avatarFileInput.click()" style="cursor:pointer;width:120px;height:120px;">
-            <img v-if="groupAvatarPreview" :src="groupAvatarPreview" alt="avatar" style="width:120px;height:120px;object-fit:cover;border-radius:50%;display:block;" />
-            <span v-else style="font-size:2.5rem;color:#555;">{{ name ? name[0].toUpperCase() : '?' }}</span>
+          <div class="group-avatar-preview-circle avatar-upload-hover" @click="$refs.avatarFileInput.click()" title="Klikni pre nahranie obrázka">
+            <transition name="fade">
+              <img v-if="groupAvatarPreview" :src="groupAvatarPreview" alt="avatar" class="avatar-img" />
+              <span v-else class="avatar-fallback">{{ name ? name[0].toUpperCase() : '?' }}</span>
+            </transition>
             <input ref="avatarFileInput" type="file" accept="image/*" style="display:none" @change="onAvatarSelected" />
-            <button v-if="groupAvatarPreview" @click.stop="cancelAvatarPreview" style="position:absolute;top:2px;right:2px;background:#fff;border:none;border-radius:50%;width:28px;height:28px;box-shadow:0 2px 8px rgba(0,0,0,0.12);cursor:pointer;font-size:18px;">✕</button>
+            <button v-if="groupAvatarPreview" @click.stop="cancelAvatarPreview" class="avatar-cancel-btn">✕</button>
+            <div class="avatar-upload-overlay"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#1877f2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
           </div>
           <div style="font-size:12px;color:#888;">Klikni na kruh pre nahranie obrázka</div>
         </div>

@@ -222,7 +222,7 @@ export default {
       showNicknamesDialog: false,
       editingNicknameFor: null,
       nicknameEditInput: '',
-      pendingGroupAvatarData: null
+      pendingGroupAvatarData: null,
       avatarPreviewSrc: ''
     }
   },

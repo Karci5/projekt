@@ -9,7 +9,7 @@
               <path d="M15 18l-6-6 6-6"/>
             </svg>
           </button>
-          <button v-if="isGroupAdmin" class="group-avatar-btn" @click="triggerAvatarSelect" aria-label="Zmeniť fotku skupiny">
+          <button class="group-avatar-btn" @click.stop="openGroupAvatar" aria-label="Zväčšiť fotku skupiny">
             <img v-if="displayedGroupAvatar" :src="displayedGroupAvatar" alt="" />
           </button>
           <span>{{ activeGroup.name }}</span>
@@ -31,6 +31,16 @@
               <img v-if="displayedGroupAvatar" :src="displayedGroupAvatar" alt="" />
               <span v-else class="avatar-placeholder">{{ activeGroup.name ? activeGroup.name[0].toUpperCase() : '?' }}</span>
             </button>
+            <button v-else class="side-panel-avatar-btn" @click.stop="openGroupAvatar">
+              <img v-if="displayedGroupAvatar" :src="displayedGroupAvatar" alt="" />
+              <span v-else class="avatar-placeholder">{{ activeGroup.name ? activeGroup.name[0].toUpperCase() : '?' }}</span>
+            </button>
+                <div v-if="avatarPreviewSrc" class="avatar-preview-overlay" @click="avatarPreviewSrc = ''">
+                  <div class="avatar-preview-box" @click.stop>
+                    <button class="avatar-preview-close" @click="avatarPreviewSrc = ''" aria-label="Zavrieť">✕</button>
+                    <img :src="avatarPreviewSrc" alt="group avatar" />
+                  </div>
+                </div>
             <div class="side-panel-group-name">{{ activeGroup.name }}</div>
             <div v-if="pendingGroupAvatarData" class="avatar-preview-actions">
               <button class="side-panel-avatar-apply" @click="applyGroupAvatar">Použiť obrázok</button>
@@ -213,8 +223,14 @@ export default {
       editingNicknameFor: null,
       nicknameEditInput: '',
       pendingGroupAvatarData: null
+      avatarPreviewSrc: ''
     }
   },
+      openGroupAvatar() {
+        if (this.displayedGroupAvatar) {
+          this.avatarPreviewSrc = this.displayedGroupAvatar;
+        }
+      },
   computed: {
     allMembers() {
       return this.members || [];

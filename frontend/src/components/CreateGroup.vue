@@ -38,7 +38,17 @@
           <input v-model="name" type="text" placeholder="Zadaj názov...">
         </div>
         
-        <!-- Avatar skupiny (nahrávanie obrázka) odstránené na žiadosť používateľa -->
+
+        <div class="form-group" style="align-items:center;display:flex;flex-direction:column;gap:8px;">
+          <label>Profilová fotka skupiny</label>
+          <div class="group-avatar-preview-circle" @click="$refs.avatarFileInput.click()" style="cursor:pointer;">
+            <img v-if="groupAvatarPreview" :src="groupAvatarPreview" alt="avatar" />
+            <span v-else style="font-size:2.5rem;color:#555;">{{ name ? name[0].toUpperCase() : '?' }}</span>
+            <input ref="avatarFileInput" type="file" accept="image/*" style="display:none" @change="onAvatarSelected" />
+            <button v-if="groupAvatarPreview" @click.stop="cancelAvatarPreview" style="position:absolute;top:2px;right:2px;background:#fff;border:none;border-radius:50%;width:28px;height:28px;box-shadow:0 2px 8px rgba(0,0,0,0.12);cursor:pointer;font-size:18px;">✕</button>
+          </div>
+          <div style="font-size:12px;color:#888;">Klikni na kruh pre nahranie obrázka</div>
+        </div>
         
         <div class="form-group">
           <label>Pridať členov</label>

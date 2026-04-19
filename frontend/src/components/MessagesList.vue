@@ -16,18 +16,6 @@
 </template>
 
 <script>
-  computed: {
-    // Avatar sa zobrazí len pri prvej správe v bloku od daného používateľa
-  },
-  methods: {
-    shouldShowAvatar(idx) {
-      const m = this.messages[idx];
-      if (!m || m.mine) return false;
-      if (idx === 0) return true;
-      const prev = this.messages[idx - 1];
-      // Ak je predchádzajúca správa od iného používateľa, zobraz avatar
-      return !prev || prev.sender_id !== m.sender_id;
-    },
 import MessageItem from './MessageItem.vue'
 export default {
   props: {
@@ -73,31 +61,13 @@ export default {
     this.prevMessagesLength = this.messages.length;
   },
   methods: {
-    setOpenMenu(id) {
-      this.openMenuId = id;
-    },
-    scrollToBottom(animate = true) {
-      const el = this.$refs.list;
-      if (!el) return;
-      if (animate && el.scrollTo) {
-        el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
-      } else {
-        el.scrollTop = el.scrollHeight;
-      }
-    },
-    onScroll() {
-      const el = this.$refs.list;
-      if (!el) return;
-      const distanceFromBottom = el.scrollHeight - (el.scrollTop + el.clientHeight);
-      const threshold = 100;
-      if (distanceFromBottom < threshold) this.newMessagesCount = 0;
-    },
-    jumpToLatest() {
-      this.scrollToBottom(true);
-      this.newMessagesCount = 0;
-    }
-  }
-}
+    shouldShowAvatar(idx) {
+      const m = this.messages[idx];
+      if (!m || m.mine) return false;
+      if (idx === 0) return true;
+      const prev = this.messages[idx - 1];
+      // Ak je predchádzajúca správa od iného používateľa, zobraz avatar
+      return !prev || prev.sender_id !== m.sender_id;
 </script>
 
 <style scoped>

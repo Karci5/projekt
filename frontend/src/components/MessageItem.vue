@@ -457,31 +457,49 @@ export default {
   width: 100%;
 }
 
+
 @media (max-width: 600px) {
   .message-wrapper {
-    padding-left: 1vw;
-    padding-right: 1vw;
-    gap: 3px;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    gap: 8px;
   }
   .message-item {
     max-width: 95vw;
     min-width: 36px;
-    font-size: 14px;
-    padding: 7px 8px;
-    border-radius: 13px;
+    font-size: 15px;
+    padding: 10px 14px;
+    border-radius: 18px;
+    margin-bottom: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    word-break: break-word;
+  }
+  .message-item.mine {
+    margin-left: auto;
+    margin-right: 0;
+    background: var(--my-bubble, #d32f2f);
+    color: var(--my-text, #fff);
+  }
+  .message-item.other {
+    margin-right: auto;
+    margin-left: 0;
+    background: var(--their-bubble, #fff0f3);
+    color: var(--their-text, #000);
   }
 }
 
 @media (max-width: 400px) {
   .message-wrapper {
-    padding-left: 0.5vw;
-    padding-right: 0.5vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    gap: 6px;
   }
   .message-item {
     max-width: 99vw;
     font-size: 13px;
-    padding: 4px 4px;
-    border-radius: 8px;
+    padding: 8px 8px;
+    border-radius: 14px;
+    margin-bottom: 4px;
   }
 }
 

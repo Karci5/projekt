@@ -626,10 +626,12 @@ export default {
 }
 
 .settings-header h2 {
-  margin: 0;
+  margin: 0 auto;
   font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
+  text-align: center;
+  flex: 1;
 }
 
 .settings-content {

@@ -599,9 +599,9 @@ export default {
   padding: 24px 32px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -626,12 +626,12 @@ export default {
 }
 
 .settings-header h2 {
-  margin: 0 auto;
+  margin: 0;
   font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
   text-align: center;
-  flex: 1;
+  grid-column: 2;
 }
 
 .settings-content {

@@ -501,22 +501,31 @@ export default {
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 100%;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
     height: 100dvh;
-    max-height: none;
-    border-right: none;
-    border-bottom: none;
-    padding: 4px 2px 0 2px;
-    gap: 4px;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    border: none;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+    box-shadow: none;
+    background: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
   }
 
   .sidebar-body {
     gap: 4px;
-    padding: 0 2px;
+    padding: 0;
   }
 
   .profile-footer {
-    margin-bottom: calc(4px + env(safe-area-inset-bottom));
+    margin-bottom: 0;
     padding: 10px 6px 10px 6px;
   }
 

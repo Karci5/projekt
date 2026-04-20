@@ -7,22 +7,21 @@
     <div class="sidebar-body">
       <Tabs v-if="!hideTabs" :activeTab="activeTab" @change="$emit('change-tab', $event)" />
 
-      <div v-if="activeTab === 'chats'">
-        <FriendList
-          :friends="friends"
-          :nicknames="nicknames"
-          :show-presence="showPresence"
-          :presence-by-id="friendPresence"
-          @select="$emit('select-friend', $event)"
-        />
-        <div class="groups-list-scroll">
-          <GroupsList :groups="groups" @select="$emit('select-group', $event)" @create-group="$emit('create-group')" />
+      <template v-if="activeTab === 'chats'">
+        <div>
+          <FriendList
+            :friends="friends"
+            :nicknames="nicknames"
+            :show-presence="showPresence"
+            :presence-by-id="friendPresence"
+            @select="$emit('select-friend', $event)"
+          />
+          <div class="groups-list-scroll">
+            <GroupsList :groups="groups" @select="$emit('select-group', $event)" @create-group="$emit('create-group')" />
+          </div>
         </div>
-
-        </div>
-      </div>
-
-      <div v-else-if="activeTab === 'friends'">
+      </template>
+      <template v-else-if="activeTab === 'friends'">
         <div class="friends-controls">
           <select :value="friendsFilter" @change="$emit('set-friends-filter', $event.target.value)">
             <option value="all">Všetci</option>
@@ -55,20 +54,21 @@
           @edit-note="$emit('edit-friend-note', $event)"
           @write-message="$emit('write-message', $event)"
         />
-      </div>
-
-      <div v-else-if="activeTab === 'requests'">
-        <UserSearch :value="searchUser" @update="$emit('update-search', $event)" />
-        <RequestsList
-          :requests="requests"
-          :sent-requests="sentRequests"
-          :discover-users="discoverUsers"
-          @send-request="$emit('send-request', $event)"
-          @cancel-sent-request="$emit('cancel-sent-request', $event)"
-          @accept="$emit('accept-request', $event)"
-          @decline="$emit('decline-request', $event)"
-        />
-      </div>
+      </template>
+      <template v-else-if="activeTab === 'requests'">
+        <div>
+          <UserSearch :value="searchUser" @update="$emit('update-search', $event)" />
+          <RequestsList
+            :requests="requests"
+            :sent-requests="sentRequests"
+            :discover-users="discoverUsers"
+            @send-request="$emit('send-request', $event)"
+            @cancel-sent-request="$emit('cancel-sent-request', $event)"
+            @accept="$emit('accept-request', $event)"
+            @decline="$emit('decline-request', $event)"
+          />
+        </div>
+      </template>
     </div>
 
     <div class="profile-footer">

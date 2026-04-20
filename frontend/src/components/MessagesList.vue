@@ -63,36 +63,34 @@ export default {
     this.prevMessagesLength = this.messages.length;
   },
   methods: {
-
     shouldShowAvatar(idx) {
       const m = this.messages[idx];
       // Avatar len pri správach iných používateľov
       return m && !m.mine;
     },
-  },
-  setOpenMenu(id) {
-    this.openMenuId = id;
-  },
-  scrollToBottom(animate = true) {
-    const el = this.$refs.list;
-    if (!el) return;
-    if (animate && el.scrollTo) {
-      el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
-    } else {
-      el.scrollTop = el.scrollHeight;
+    setOpenMenu(id) {
+      this.openMenuId = id;
+    },
+    scrollToBottom(animate = true) {
+      const el = this.$refs.list;
+      if (!el) return;
+      if (animate && el.scrollTo) {
+        el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+      } else {
+        el.scrollTop = el.scrollHeight;
+      }
+    },
+    onScroll() {
+      const el = this.$refs.list;
+      if (!el) return;
+      const distanceFromBottom = el.scrollHeight - (el.scrollTop + el.clientHeight);
+      const threshold = 100;
+      if (distanceFromBottom < threshold) this.newMessagesCount = 0;
+    },
+    jumpToLatest() {
+      this.scrollToBottom(true);
+      this.newMessagesCount = 0;
     }
-  },
-  onScroll() {
-    const el = this.$refs.list;
-    if (!el) return;
-    const distanceFromBottom = el.scrollHeight - (el.scrollTop + el.clientHeight);
-    const threshold = 100;
-    if (distanceFromBottom < threshold) this.newMessagesCount = 0;
-  },
-  jumpToLatest() {
-    this.scrollToBottom(true);
-    this.newMessagesCount = 0;
-  }
   }
 }
 </script>

@@ -15,7 +15,9 @@
           :presence-by-id="friendPresence"
           @select="$emit('select-friend', $event)"
         />
-        <GroupsList :groups="groups" @select="$emit('select-group', $event)" @create-group="$emit('create-group')" />
+        <div class="groups-list-scroll">
+          <GroupsList :groups="groups" @select="$emit('select-group', $event)" @create-group="$emit('create-group')" />
+        </div>
       </div>
 
       <div v-else-if="activeTab === 'friends'">
@@ -579,3 +581,20 @@ html.dark-mode .menu-item.danger:hover {
 }
 
   </style>
+
+  .groups-list-scroll {
+    max-height: 320px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #bdbdbd #f0f0f0;
+  }
+  .groups-list-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  .groups-list-scroll::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+    border-radius: 6px;
+  }
+  .groups-list-scroll::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }

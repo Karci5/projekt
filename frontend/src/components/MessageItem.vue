@@ -1,3 +1,12 @@
+  watch: {
+    message: {
+      handler() {
+        // Resetni onAvatarError vždy, keď sa zmení správa
+        this.onAvatarError = false;
+      },
+      immediate: true
+    }
+  },
 @media (max-width: 600px) {
   .message-item.has-attachment {
     display: inline-flex;

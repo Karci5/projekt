@@ -47,34 +47,11 @@
         <img :src="avatarSrc" alt="Avatar" @error="onAvatarError = true" />
       </template>
       <template v-else>
-        <span class="avatar-fallback-letter">
-          <span class="avatar-fallback-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#bdbdbd" stroke-width="2" width="28" height="28" style="display:block;margin:auto;">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="9" r="3"/>
-              <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
-            </svg>
-          </span>
-        </span>
-      /* Centrovanie a svetlá farba fallback avataru */
-      .avatar-fallback-letter {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-      }
-
-      .avatar-fallback-circle {
-        background: #fff;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      }
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" width="24" height="24">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="9" r="3"/>
+          <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+        </svg>
       </template>
     </div>
 
@@ -466,16 +443,17 @@ export default {
 <style scoped>
 /* Avatar pri správe */
 .message-avatar {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: #e4e6eb;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   flex-shrink: 0;
   overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .message-avatar img {
   width: 100%;
@@ -483,23 +461,26 @@ export default {
   object-fit: cover;
   border-radius: 50%;
 }
-.avatar-fallback-letter {
-  font-size: 1.3rem;
-  color: #555;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-    background: var(--my-bubble, #1877f2);
-  width: 100%;
-  height: 100%;
+.message-avatar svg {
+  width: 24px;
+  height: 24px;
+  color: #666;
+  display: block;
 }
-
-.message-wrapper {
-  align-items: flex-start;
-  width: 100%;
-  display: flex;
+@media (max-width: 600px) {
+  .message-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
 }
-
+@media (max-width: 400px) {
+  .message-avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+}
 
 @media (max-width: 600px) {
   .message-wrapper {

@@ -1,4 +1,7 @@
+const express = require("express");
+const db = require("../db");
 const { privacySettings } = require("../index");
+const router = express.Router();
 
 // Update privacy settings (show_online) - in-memory only
 router.post("/privacy-settings", async (req, res) => {
@@ -16,9 +19,6 @@ router.get("/privacy-settings/:userId", async (req, res) => {
   const showOnline = privacySettings[userId] !== undefined ? privacySettings[userId] : true;
   res.json({ userId, showOnline });
 });
-const express = require("express");
-const db = require("../db");
-const router = express.Router();
 
 // Get user profile
 router.get("/:userId", async (req, res) => {

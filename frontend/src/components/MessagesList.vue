@@ -68,6 +68,7 @@ export default {
       const m = this.messages[idx];
       // Avatar len pri správach iných používateľov
       return m && !m.mine;
+    },
   },
   setOpenMenu(id) {
     this.openMenuId = id;

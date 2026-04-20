@@ -475,7 +475,8 @@ export default {
   font-weight: bold;
   display: flex;
   align-items: center;
-  background: #e4e6eb; /* svetlosivá ako v sidebar */
+  background: #bdbdbd; /* tmavšia sivá */
+  border: 2px solid #e4e6eb; /* svetlý okraj pre kontrast */
   width: 100%;
   height: 100%;
 }

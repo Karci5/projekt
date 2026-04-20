@@ -475,7 +475,7 @@ export default {
   font-weight: bold;
   display: flex;
   align-items: center;
-    background: var(--my-bubble, #1877f2);
+  background: #e4e6eb; /* svetlosivá ako v sidebar */
   width: 100%;
   height: 100%;
 }

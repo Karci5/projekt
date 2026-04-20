@@ -55,16 +55,17 @@ export default {
       this.newMessagesCount += added;
     }
   },
-  watch: {
-    messages(newVal, oldVal) {
-      if (Array.isArray(newVal) && Array.isArray(oldVal)) {
-        if (newVal.length !== oldVal.length && this.shouldScrollToBottom) {
-          this.scrollToBottom(true);
-          this.newMessagesCount = 0;
-        }
-      }
-      this.prevMessagesLength = newVal.length;
+  updated() {
+    // Scrolluj len ak pribudla nová správa (porovnaj posledné ID/timestamp)
+    const prevLen = this.prevMessagesLength;
+    const currLen = this.messages.length;
+    if (currLen > prevLen && this.shouldScrollToBottom) {
+      this.$nextTick(() => {
+        this.scrollToBottom(true);
+        this.newMessagesCount = 0;
+      });
     }
+    this.prevMessagesLength = currLen;
   },
   methods: {
     shouldShowAvatar(idx) {

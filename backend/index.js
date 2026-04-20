@@ -1,3 +1,6 @@
+// In-memory privacy settings (userId -> show_online)
+const privacySettings = {};
+module.exports.privacySettings = privacySettings;
 const express = require("express");
 const http = require("http");
 const net = require("net");
@@ -189,7 +192,15 @@ const lastSeenByUser = new Map();
 app.set('onlineUsers', onlineUsers);
 app.set('lastSeenByUser', lastSeenByUser);
 
-function emitPresence(userId, isOnline) {
+async function emitPresence(userId, isOnline) {
+  // Zistiť, či má používateľ povolené zobrazovanie online stavu
+  try {
+    const [rows] = await db.execute('SELECT show_online FROM chat_users WHERE id = ?', [userId]);
+    if (!rows.length || rows[0].show_online === 0) return; // neemituj ak má vypnuté
+  } catch (e) {
+    console.warn('Chyba pri kontrole show_online:', e && e.message ? e.message : e);
+    return;
+  }
   io.emit('presence_update', {
     userId: String(userId),
     isOnline: !!isOnline,
@@ -240,11 +251,7 @@ io.on("connection", (socket) => {
       } catch (e) {
         console.warn('Failed to set offline status on disconnect', e && e.message ? e.message : e);
       }
-      io.emit('presence_update', {
-        userId,
-        isOnline: false,
-        lastActive: ts
-      });
+      emitPresence(userId, false);
       return;
     }
 

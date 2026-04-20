@@ -243,9 +243,22 @@ export default {
       this.dndFrom = localStorage.getItem('notifications_dnd_from') || '22:00';
       this.dndTo = localStorage.getItem('notifications_dnd_to') || '07:00';
     },
-    savePrivacySettings() {
+    async savePrivacySettings() {
       localStorage.setItem('privacy_show_online', String(this.privacyShowOnline));
       localStorage.setItem('privacy_show_last_seen', String(this.privacyShowLastSeen));
+      // Uložiť aj do backendu
+      try {
+        await fetch('/api/profile/privacy-settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userId: this.userId,
+            showOnline: this.privacyShowOnline
+          })
+        });
+      } catch (e) {
+        console.warn('Nepodarilo sa uložiť privacy nastavenie na backend:', e);
+      }
       this.$emit('privacy-changed', {
         showOnline: this.privacyShowOnline,
         showLastSeen: this.privacyShowLastSeen

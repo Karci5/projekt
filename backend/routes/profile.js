@@ -1,3 +1,21 @@
+const { privacySettings } = require("../index");
+
+// Update privacy settings (show_online) - in-memory only
+router.post("/privacy-settings", async (req, res) => {
+  const { userId, showOnline } = req.body;
+  if (!userId || typeof showOnline === 'undefined') {
+    return res.status(400).json({ error: "userId a showOnline sú povinné" });
+  }
+  privacySettings[userId] = !!showOnline;
+  res.json({ message: "Privacy settings updated (in-memory)" });
+});
+
+// Get privacy settings (show_online) - in-memory only
+router.get("/privacy-settings/:userId", async (req, res) => {
+  const userId = req.params.userId;
+  const showOnline = privacySettings[userId] !== undefined ? privacySettings[userId] : true;
+  res.json({ userId, showOnline });
+});
 const express = require("express");
 const db = require("../db");
 const router = express.Router();

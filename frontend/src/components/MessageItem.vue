@@ -180,6 +180,9 @@ export default {
   },
 
   computed: {
+    menuOpen() {
+      return this.openMenuId === this.messageKey;
+    },
     senderName() {
       return this.message?.username || this.message?.senderName || 'Pouzivatel';
     },
@@ -301,23 +304,14 @@ export default {
     }
   },
   watch: {
-    openMenuId(newVal) {
-      if (!this.menuOpen) return;
-      if (newVal !== this.messageKey) {
-        this.menuOpen = false;
-      }
-    }
+    // už netreba sledovať openMenuId, menuOpen je computed
   },
   methods: {
     onHover(val) {
-      if (!val && !this.menuOpen) {
-        this.menuOpen = false;
-      }
+      // už netreba meniť menuOpen, menuOpen je computed
     },
     toggleMenu() {
-      const next = !this.menuOpen;
-      this.menuOpen = next;
-      if (next) {
+      if (!this.menuOpen) {
         this.$nextTick(() => {
           const btn = this.$refs.dotsBtn;
           if (btn && btn.getBoundingClientRect) {
@@ -360,12 +354,10 @@ export default {
     },
     handleEdit() {
       console.log('Edit clicked for message:', this.message);
-      this.menuOpen = false;
       this.$emit('open-menu', null);
       this.$emit('edit', this.message);
     },
     handleReply() {
-      this.menuOpen = false;
       this.$emit('open-menu', null);
       // Pridám username ak nie je
       const messageWithUsername = {
@@ -380,7 +372,6 @@ export default {
         if (!copied) {
           return;
         }
-        this.menuOpen = false;
         this.$emit('open-menu', null);
         return;
       }
@@ -400,7 +391,6 @@ export default {
         document.execCommand('copy');
         document.body.removeChild(ta);
       }
-      this.menuOpen = false;
       this.$emit('open-menu', null);
     },
     async handleInlineImageCopy() {
@@ -442,7 +432,6 @@ export default {
     },
     handleDelete() {
       console.log('Delete clicked for message:', this.message);
-      this.menuOpen = false;
       this.$emit('open-menu', null);
       this.$emit('delete', this.message);
     },

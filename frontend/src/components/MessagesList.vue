@@ -64,9 +64,9 @@ export default {
 
     shouldShowAvatar(idx) {
       const m = this.messages[idx];
-      // Avatar len pri správach iných používateľov
+      // Avatar pri každej cudzej správe (aj keď idú za sebou)
       return m && !m.mine;
-  },
+    },
   setOpenMenu(id) {
     this.openMenuId = id;
   },

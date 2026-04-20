@@ -101,6 +101,7 @@
           <span class="menu-item-icon" aria-hidden="true">⚙</span>
           <span class="menu-item-label">Nastavenia</span>
         </button>
+        <div class="menu-divider"></div>
         <button class="menu-item danger" @click="doLogout">
           <span class="menu-item-icon" aria-hidden="true">↩</span>
           <span class="menu-item-label">Odhlásiť</span>
@@ -425,35 +426,36 @@ export default {
   position: absolute;
   bottom: 68px;
   left: 10px;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
-  min-width: 224px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.18);
+  min-width: 240px;
   max-width: calc(100% - 20px);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
   overflow: hidden;
   z-index: 20;
-  padding: 6px;
+  padding: 10px 0 10px 0;
+  backdrop-filter: blur(2px);
 }
 
 .menu-item {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 11px 12px;
+  gap: 12px;
+  padding: 14px 18px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   background: transparent;
   text-align: left;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #0f172a;
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  transition: background-color 0.15s, transform 0.1s;
 }
 
 .menu-item:hover {
@@ -465,21 +467,26 @@ export default {
   transform: translateY(0);
 }
 
-.menu-item + .menu-item {
-  border-top: 1px solid #f1f5f9;
+.menu-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 2px 0 2px 0;
+  width: 90%;
+  align-self: center;
 }
 
 .menu-item-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 15px;
   background: #f1f5f9;
   color: #475569;
   flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
 .menu-item-label {
@@ -488,15 +495,18 @@ export default {
 
 .menu-item.danger {
   color: #b91c1c;
+  font-weight: 700;
 }
 
 .menu-item.danger .menu-item-icon {
   background: #fef2f2;
   color: #b91c1c;
+  box-shadow: none;
 }
 
 .menu-item.danger:hover {
   background: #fff1f2;
+  color: #991b1b;
 }
 
 @media (max-width: 768px) {

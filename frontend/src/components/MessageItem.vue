@@ -186,18 +186,19 @@ export default {
     senderName() {
       return this.message?.username || this.message?.senderName || 'Pouzivatel';
     },
+    // Vždy zobrazí profilovku používateľa (ak existuje v users alebo v message), inak defaultný avatar
     avatarSrc() {
-      // 1. Skús profilovku priamo v správe
       let pic = this.message?.profile_picture || this.message?.sender_avatar || this.message?.senderAvatar || null;
-      // 2. Ak nie je, skús users objekt
+      // Skús users objekt podľa user_id/sender_id
       if ((!pic || typeof pic !== 'string' || pic.trim() === '') && this.users) {
         const uid = this.message?.user_id || this.message?.sender_id;
-        const user = this.users[uid];
+        const user = this.users && this.users[uid];
         if (user && user.profile_picture) pic = user.profile_picture;
       }
+      // Ak stále nič, vráť null (zobrazí sa SVG avatar)
       if (!pic || typeof pic !== 'string' || pic.trim() === '') return null;
+      // Ak je tam len názov súboru, doplň prefix
       if (pic && !pic.includes('/uploads/')) {
-        // Ak je tam len názov súboru, doplň prefix
         pic = '/uploads/profile_pictures/' + pic;
       }
       return pic;

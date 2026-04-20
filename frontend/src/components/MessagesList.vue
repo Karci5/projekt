@@ -55,13 +55,17 @@ export default {
       this.newMessagesCount += added;
     }
   },
-  updated() {
-    // Vždy po update skús scrollovať dolu
-    this.$nextTick(() => {
-      this.scrollToBottom(true);
-      this.newMessagesCount = 0;
-    });
-    this.prevMessagesLength = this.messages.length;
+  watch: {
+    messages(newVal, oldVal) {
+      // Scrolluj dolu len keď je v messages aspoň jedna správa
+      if (Array.isArray(newVal) && newVal.length > 0) {
+        this.$nextTick(() => {
+          this.scrollToBottom(true);
+          this.newMessagesCount = 0;
+        });
+      }
+      this.prevMessagesLength = newVal.length;
+    }
   },
   methods: {
     shouldShowAvatar(idx) {

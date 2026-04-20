@@ -1,3 +1,9 @@
+
+const express = require("express");
+const db = require("../db");
+const { privacySettings } = require("../index");
+const router = express.Router();
+
 // Save all settings at once (username, privacy, notifications, profile picture)
 router.post("/save-settings", async (req, res) => {
   const { userId, username, showOnline, showLastSeen, notificationsSound, dndEnabled, dndFrom, dndTo, profilePicture } = req.body;
@@ -20,10 +26,6 @@ router.post("/save-settings", async (req, res) => {
   // Ostatné nastavenia (notifikácie, DND) sú len v localStorage na frontende
   res.json({ ok: true });
 });
-const express = require("express");
-const db = require("../db");
-const { privacySettings } = require("../index");
-const router = express.Router();
 
 // Update privacy settings (show_online) - in-memory only
 router.post("/privacy-settings", async (req, res) => {

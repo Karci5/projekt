@@ -634,16 +634,17 @@ export default {
 
 @media (max-width: 600px) {
   .message-item {
-    max-width: 95vw;
-    min-width: 36px;
-    font-size: 14px;
-    padding: 7px 8px;
-    border-radius: 13px;
+    max-width: 96vw;
+    min-width: 48px;
+    font-size: 17px;
+    padding: 13px 18px;
+    border-radius: 18px;
+    margin-bottom: 6px;
     flex-direction: column;
     align-items: flex-start;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
   }
 }
-/* Odstránené rozbité CSS fragmenty, všetko potrebné je už vyššie. */
 .message-item.mine {
   background: var(--my-bubble, #1877f2);
   color: var(--my-text, #ffffff);
@@ -654,11 +655,10 @@ export default {
 @media (max-width: 400px) {
   .message-item {
     max-width: 99vw;
-    font-size: 13px;
-    padding: 4px 4px;
-    border-radius: 8px;
-    flex-direction: column;
-    align-items: flex-start;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 13px;
+    margin-bottom: 4px;
   }
 }
 

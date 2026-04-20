@@ -7,6 +7,7 @@
       :show-sender-name="showSenderName"
       :open-menu-id="openMenuId"
       :show-avatar="shouldShowAvatar(i)"
+      :users="users"
       @edit="$emit('edit', m)"
       @delete="$emit('delete', m)"
       @open-menu="setOpenMenu"
@@ -20,7 +21,8 @@ import MessageItem from './MessageItem.vue'
 export default {
   props: {
     messages: { type: Array, default: () => [] },
-    showSenderName: { type: Boolean, default: false }
+    showSenderName: { type: Boolean, default: false },
+    users: { type: Object, default: null }
   },
   emits: ['edit', 'delete', 'reply'],
   components: { MessageItem },

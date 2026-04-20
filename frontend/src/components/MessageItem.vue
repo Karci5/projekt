@@ -833,23 +833,10 @@ export default {
   min-width: 170px;
   width: max-content;
   max-width: min(220px, calc(100vw - 16px));
-  z-index: 20010 !important;
+  z-index: 10001;
   pointer-events: auto;
   overflow: visible;
   padding: 10px;
-}
-
-@media (max-width: 900px) {
-  .actions-menu {
-    position: fixed !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    min-width: 160px;
-    max-width: min(96vw, 320px);
-    z-index: 30000 !important;
-    box-shadow: 0 8px 32px rgba(17,24,39,0.25);
-  }
 }
 
 .message-item.mine .actions-menu {

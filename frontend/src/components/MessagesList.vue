@@ -26,6 +26,12 @@ export default {
   },
   emits: ['edit', 'delete', 'reply'],
   components: { MessageItem },
+  mounted() {
+    // Inicializuj prevMessagesLength pri mountnutí
+    this.prevMessagesLength = this.messages.length;
+    console.log('[mounted] prevMessagesLength:', this.prevMessagesLength);
+    this.scrollToBottom(true);
+  },
   beforeUpdate() {
     const el = this.$refs.list;
     if (!el) return;
@@ -46,9 +52,11 @@ export default {
   watch: {
     messages: {
       handler(newVal) {
+        console.log('[watch:messages] newVal:', newVal);
         // Scrolluj dolu len keď je v messages aspoň jedna správa
         if (Array.isArray(newVal) && newVal.length > 0) {
           this.$nextTick(() => {
+            console.log('[watch:messages] calling scrollToBottom');
             this.scrollToBottom(true);
             this.newMessagesCount = 0;
           });
@@ -67,27 +75,30 @@ export default {
     setOpenMenu(id) {
       this.openMenuId = id;
     },
-  },
-  scrollToBottom(animate = true) {
-    const el = this.$refs.list;
-    if (!el) return;
-    if (animate && el.scrollTo) {
-      el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
-    } else {
-      el.scrollTop = el.scrollHeight;
+    scrollToBottom(animate = true) {
+      const el = this.$refs.list;
+      if (!el) {
+        console.log('[scrollToBottom] $refs.list is null');
+        return;
+      }
+      if (animate && el.scrollTo) {
+        el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+      } else {
+        el.scrollTop = el.scrollHeight;
+      }
+      console.log('[scrollToBottom] scrolled to:', el.scrollTop, '/', el.scrollHeight);
+    },
+    onScroll() {
+      const el = this.$refs.list;
+      if (!el) return;
+      const distanceFromBottom = el.scrollHeight - (el.scrollTop + el.clientHeight);
+      const threshold = 100;
+      if (distanceFromBottom < threshold) this.newMessagesCount = 0;
+    },
+    jumpToLatest() {
+      this.scrollToBottom(true);
+      this.newMessagesCount = 0;
     }
-  },
-  onScroll() {
-    const el = this.$refs.list;
-    if (!el) return;
-    const distanceFromBottom = el.scrollHeight - (el.scrollTop + el.clientHeight);
-    const threshold = 100;
-    if (distanceFromBottom < threshold) this.newMessagesCount = 0;
-  },
-  jumpToLatest() {
-    this.scrollToBottom(true);
-    this.newMessagesCount = 0;
-  }
   }
 </script>
 

@@ -7,6 +7,7 @@
       :show-sender-name="showSenderName"
       :show-avatar="shouldShowAvatar(i)"
       :users="users"
+      :open-menu-id="openMenuId"
       @edit="$emit('edit', m)"
       @delete="$emit('delete', m)"
       @open-menu="setOpenMenu"

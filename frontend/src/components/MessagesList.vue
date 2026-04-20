@@ -63,15 +63,14 @@ export default {
     this.prevMessagesLength = this.messages.length;
   },
   methods: {
-
     shouldShowAvatar(idx) {
       const m = this.messages[idx];
       // Avatar len pri správach iných používateľov
       return m && !m.mine;
     },
-  },
-  setOpenMenu(id) {
-    this.openMenuId = id;
+    setOpenMenu(id) {
+      this.openMenuId = id;
+    },
   },
   scrollToBottom(animate = true) {
     const el = this.$refs.list;

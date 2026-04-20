@@ -263,14 +263,19 @@ export default {
       if (!this.message.replyTo) return '';
       const username = this.message.replyTo.username || this.message.replyTo.senderName || 'Neznámy';
       const originalMsg = this.message.replyTo.message ? this.message.replyTo.message.trim() : '';
-      if (username && originalMsg) {
-        return `Odpovedal používateľovi ${username} na správu "${originalMsg}"`;
-      } else if (username) {
-        return `Odpovedal používateľovi ${username}`;
-      } else if (originalMsg) {
-        return `Odpovedal na správu "${originalMsg}"`;
+      const replySenderId = this.message.replyTo.sender_id;
+      const myId = this.message.sender_id;
+      if (this.message.mine) {
+        if (replySenderId == myId) {
+          // Odpovedám sebe
+          return `Odpovedal si sebe na správu "${originalMsg}"`;
+        } else {
+          // Odpovedám inému
+          return `Odpovedal si používateľovi ${username} na správu "${originalMsg}"`;
+        }
       } else {
-        return 'Odpoveď na správu';
+        // Niekto iný odpovedá
+        return `Odpovedal používateľovi ${username} na správu "${originalMsg}"`;
       }
     }
   },

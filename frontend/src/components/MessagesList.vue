@@ -5,7 +5,6 @@
       :key="m.id || m.created_at"
       :message="m"
       :show-sender-name="showSenderName"
-      :open-menu-id="openMenuId"
       :show-avatar="shouldShowAvatar(i)"
       :users="users"
       @edit="$emit('edit', m)"
@@ -94,7 +93,6 @@ export default {
     this.newMessagesCount = 0;
   }
   }
-}
 </script>
 
 <style scoped>

@@ -48,7 +48,11 @@
       </template>
       <template v-else>
         <span class="avatar-fallback-letter">
-          {{ (message.username || message.senderName || 'U')[0].toUpperCase() }}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="9" r="3"/>
+            <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          </svg>
         </span>
       </template>
     </div>

@@ -26,21 +26,6 @@ export default {
   },
   emits: ['edit', 'delete', 'reply'],
   components: { MessageItem },
-  watch: {
-    messages: {
-      handler(newVal) {
-        // Scrolluj dolu len keď je v messages aspoň jedna správa
-        if (Array.isArray(newVal) && newVal.length > 0) {
-          this.$nextTick(() => {
-            this.scrollToBottom(true);
-            this.newMessagesCount = 0;
-          });
-        }
-        this.prevMessagesLength = newVal.length;
-      },
-      immediate: true
-    }
-  },
   beforeUpdate() {
     const el = this.$refs.list;
     if (!el) return;
@@ -59,15 +44,18 @@ export default {
     }
   },
   watch: {
-    messages(newVal, oldVal) {
-      // Scrolluj dolu len keď je v messages aspoň jedna správa
-      if (Array.isArray(newVal) && newVal.length > 0) {
-        this.$nextTick(() => {
-          this.scrollToBottom(true);
-          this.newMessagesCount = 0;
-        });
-      }
-      this.prevMessagesLength = newVal.length;
+    messages: {
+      handler(newVal) {
+        // Scrolluj dolu len keď je v messages aspoň jedna správa
+        if (Array.isArray(newVal) && newVal.length > 0) {
+          this.$nextTick(() => {
+            this.scrollToBottom(true);
+            this.newMessagesCount = 0;
+          });
+        }
+        this.prevMessagesLength = newVal.length;
+      },
+      immediate: true
     }
   },
   methods: {

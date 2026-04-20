@@ -1,3 +1,25 @@
+// Save all settings at once (username, privacy, notifications, profile picture)
+router.post("/save-settings", async (req, res) => {
+  const { userId, username, showOnline, showLastSeen, notificationsSound, dndEnabled, dndFrom, dndTo, profilePicture } = req.body;
+  if (!userId) return res.status(400).json({ error: "userId je povinný" });
+
+  // Uložiť privacy do RAM
+  if (typeof showOnline !== 'undefined') privacySettings[userId] = !!showOnline;
+
+  // Uložiť username a profile picture do DB (ak je zmena)
+  try {
+    if (username) {
+      await db.execute("UPDATE chat_users SET username = ? WHERE id = ?", [username, userId]);
+    }
+    await db.execute("UPDATE chat_users SET profile_picture = ? WHERE id = ?", [profilePicture || null, userId]);
+  } catch (err) {
+    console.error('Chyba pri ukladaní profilu:', err);
+    return res.status(500).json({ error: "Chyba pri ukladaní profilu" });
+  }
+
+  // Ostatné nastavenia (notifikácie, DND) sú len v localStorage na frontende
+  res.json({ ok: true });
+});
 const express = require("express");
 const db = require("../db");
 const { privacySettings } = require("../index");

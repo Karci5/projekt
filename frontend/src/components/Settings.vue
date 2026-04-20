@@ -179,6 +179,10 @@
         </div>
       </div>
 
+
+    <!-- Uložiť zmeny tlačidlo -->
+    <div style="display: flex; justify-content: flex-end; margin-top: 32px;">
+      <button class="btn-primary" @click="saveAllSettings">Uložiť zmeny</button>
     </div>
   </div>
 </template>
@@ -234,6 +238,36 @@ export default {
   methods: {
     apiUrl(path) {
       return buildApiUrl(path);
+    },
+    async saveAllSettings() {
+      // Uloží všetky nastavenia naraz cez API
+      const payload = {
+        userId: this.userId,
+        username: this.username,
+        showOnline: this.privacyShowOnline,
+        showLastSeen: this.privacyShowLastSeen,
+        notificationsSound: this.notificationsSound,
+        dndEnabled: this.dndEnabled,
+        dndFrom: this.dndFrom,
+        dndTo: this.dndTo,
+        profilePicture: this.profilePicture
+      };
+      try {
+        const res = await fetch(this.apiUrl('/api/profile/save-settings'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          this.$emit('profile-updated', payload);
+          alert('Zmeny boli uložené.');
+        } else {
+          const err = await res.text();
+          alert('Chyba pri ukladaní: ' + err);
+        }
+      } catch (e) {
+        alert('Chyba pri ukladaní: ' + e.message);
+      }
     },
     loadLocalSettings() {
       this.privacyShowOnline = localStorage.getItem('privacy_show_online') !== 'false';

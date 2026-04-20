@@ -500,18 +500,7 @@ export default {
     box-shadow: 0 2px 16px rgba(0,0,0,0.10);
     word-break: break-word;
   }
-  .message-item.mine {
-    margin-left: auto;
-    margin-right: 0;
-    background: var(--my-bubble, #d32f2f);
-    color: var(--my-text, #fff);
-  }
-  .message-item.other {
-    margin-right: auto;
-    margin-left: 0;
-    background: var(--their-bubble, #fff0f3);
-    color: var(--their-text, #000);
-  }
+  /* .message-item.mine, .message-item.other - odstránené špeciálne zarovnanie, všetky správy vľavo */
   .edited-label {
     font-size: 18px;
     margin-left: 8px;
@@ -554,9 +543,7 @@ export default {
   }
 }
 
-.message-wrapper.mine {
-  justify-content: flex-end;
-}
+
 
 .message-body {
   display: flex;
@@ -565,9 +552,7 @@ export default {
   min-width: 0;
 }
 
-.message-body.mine {
-  align-items: flex-end;
-}
+
 
 .message-body.other {
   align-items: flex-start;
@@ -636,12 +621,7 @@ export default {
   }
 }
 /* Odstránené rozbité CSS fragmenty, všetko potrebné je už vyššie. */
-.message-item.mine {
-  background: var(--my-bubble, #1877f2);
-  color: var(--my-text, #ffffff);
-  align-self: flex-end;
-  margin-left: auto;
-}
+
 
 @media (max-width: 400px) {
   .message-item {
@@ -666,15 +646,7 @@ export default {
 .message-item.has-attachment video { background: transparent !important }
 .message-item.has-attachment img, .message-item.has-attachment video { display: block; width: auto; max-width: 320px; height: auto; max-height: 320px; object-fit:contain; object-position:center; background:#f5f6f8; border-radius: 8px }
 
-.message-item.mine.has-attachment,
-.message-item.mine.has-attachment .media-preview,
-.message-item.mine.has-attachment .yt-preview,
-.message-item.mine.has-attachment .yt-thumb,
-.message-item.mine.has-attachment img,
-.message-item.mine.has-attachment video {
-  margin-left: auto;
-  margin-right: 0;
-}
+
 
 .message-item:not(.mine).has-attachment,
 .message-item:not(.mine).has-attachment .media-preview,

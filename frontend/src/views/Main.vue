@@ -12,7 +12,7 @@
       :current-user-name="currentUsername"
       :user-avatar="selfAvatar"
       :self-online="selfOnline"
-      :show-presence="showPresence"
+        :show-presence="true"
       :groups="groups"
       :nicknames="nicknames"
       :friend-notes="friendNotes"

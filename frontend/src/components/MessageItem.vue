@@ -48,12 +48,21 @@
       </template>
       <template v-else>
         <span class="avatar-fallback-letter">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#bdbdbd" stroke-width="2" width="32" height="32" style="display:block;margin:auto;">
             <circle cx="12" cy="12" r="10"/>
             <circle cx="12" cy="9" r="3"/>
             <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
           </svg>
         </span>
+      /* Centrovanie a svetlá farba fallback avataru */
+      .avatar-fallback-letter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: #bdbdbd;
+      }
       </template>
     </div>
 

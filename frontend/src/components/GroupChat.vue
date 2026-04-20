@@ -169,21 +169,6 @@
           <h3>Členovia skupiny</h3>
           <button class="modal-close-x" @click="showMembers = false" aria-label="Zavrieť">✕</button>
         </div>
-        <!-- Pridať člena (len admin) -->
-        <div v-if="isGroupAdmin" class="add-member-row" style="margin-bottom: 12px; display: flex; gap: 8px; align-items: center;">
-          <input
-            v-model="addMemberInput"
-            @input="onAddMemberInput"
-            type="text"
-            placeholder="Zadaj aspoň 3 písmená kamaráta"
-            style="flex:1; padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc;"
-          />
-          <button
-            :disabled="addMemberInput.length < 3"
-            @click="addMember"
-            style="padding: 6px 14px; border-radius: 6px; border: none; background: #1877f2; color: #fff; font-weight: 600; cursor: pointer;"
-          >Pridať</button>
-        </div>
         <div class="members-list">
           <div v-for="member in members" :key="member.id" class="member-item">
             <div class="member-avatar">

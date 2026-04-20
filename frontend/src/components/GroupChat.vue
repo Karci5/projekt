@@ -113,6 +113,21 @@
               <span class="sp-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
               <span>Členovia</span>
             </button>
+            <!-- Pridať člena (len admin/vlastník) -->
+            <div v-if="isGroupAdmin" class="add-member-row" style="margin: 12px 0 0 0; display: flex; gap: 8px; align-items: center;">
+              <input
+                v-model="addMemberInput"
+                @input="onAddMemberInput"
+                type="text"
+                placeholder="Zadaj aspoň 3 písmená kamaráta"
+                style="flex:1; padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc;"
+              />
+              <button
+                :disabled="addMemberInput.length < 3"
+                @click="addMember"
+                style="padding: 6px 14px; border-radius: 6px; border: none; background: #1877f2; color: #fff; font-weight: 600; cursor: pointer;"
+              >Pridať</button>
+            </div>
             <button class="side-panel-btn" @click.stop="openThemes">
               <span class="sp-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></span>
               <span>Motívy</span>

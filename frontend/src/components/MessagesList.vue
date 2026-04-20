@@ -55,15 +55,13 @@ export default {
       this.newMessagesCount += added;
     }
   },
-  watch: {
-    messages() {
-      // Scrolluj vždy, keď sa zmení pole správ (prepnutie chatu, nové správy, atď.)
-      this.$nextTick(() => {
-        this.scrollToBottom(true);
-        this.newMessagesCount = 0;
-      });
-      this.prevMessagesLength = this.messages.length;
-    }
+  updated() {
+    // Vždy po update skús scrollovať dolu
+    this.$nextTick(() => {
+      this.scrollToBottom(true);
+      this.newMessagesCount = 0;
+    });
+    this.prevMessagesLength = this.messages.length;
   },
   methods: {
     shouldShowAvatar(idx) {

@@ -506,16 +506,55 @@ export default {
     max-height: none;
     border-right: none;
     border-bottom: none;
-    padding: 8px;
-    gap: 8px;
+    padding: 4px 2px 0 2px;
+    gap: 4px;
+  }
+
+  .sidebar-body {
+    gap: 4px;
+    padding: 0 2px;
   }
 
   .profile-footer {
-    margin-bottom: calc(8px + env(safe-area-inset-bottom));
+    margin-bottom: calc(4px + env(safe-area-inset-bottom));
+    padding: 10px 6px 10px 6px;
   }
 
   .friends-controls {
     grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .groups-list-scroll {
+    max-height: 180px;
+    padding-right: 2px;
+  }
+
+  .brand {
+    font-size: 20px;
+    padding: 2px 0 4px;
+  }
+
+  .avatar-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .user-name {
+    font-size: 12px;
+    margin-left: 6px;
+  }
+
+  .menu-item {
+    font-size: 12px;
+    padding: 8px 8px;
+    gap: 6px;
+  }
+
+  .menu-item-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
   }
 }
 
@@ -604,6 +643,8 @@ html.dark-mode .menu-item.danger:hover {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #bdbdbd #f0f0f0;
+    padding-right: 4px;
+    word-break: break-word;
   }
   .groups-list-scroll::-webkit-scrollbar {
     width: 8px;

@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     this.prevMessagesLength = this.messages.length;
-    this.scrollToBottom(false);
+    this.scrollToBottom(true);
   },
   beforeUpdate() {
     const el = this.$refs.list;
@@ -55,17 +55,15 @@ export default {
       this.newMessagesCount += added;
     }
   },
-  updated() {
-    // Scrolluj len ak pribudla nová správa (porovnaj posledné ID/timestamp)
-    const prevLen = this.prevMessagesLength;
-    const currLen = this.messages.length;
-    if (currLen > prevLen && this.shouldScrollToBottom) {
+  watch: {
+    messages() {
+      // Scrolluj vždy, keď sa zmení pole správ (prepnutie chatu, nové správy, atď.)
       this.$nextTick(() => {
         this.scrollToBottom(true);
         this.newMessagesCount = 0;
       });
+      this.prevMessagesLength = this.messages.length;
     }
-    this.prevMessagesLength = currLen;
   },
   methods: {
     shouldShowAvatar(idx) {

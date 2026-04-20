@@ -64,7 +64,13 @@
           <div class="side-panel-avatar">
             <div class="side-panel-avatar-display">
               <img v-if="activeFriend.profile_picture" :src="activeFriend.profile_picture" alt="" />
-              <span v-else class="avatar-placeholder">{{ activeFriend.username ? activeFriend.username[0].toUpperCase() : '?' }}</span>
+              <span v-else class="avatar-placeholder">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36">
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="9" r="3"/>
+                  <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+                </svg>
+              </span>
             </div>
             <div class="side-panel-friend-name">{{ nicknames && nicknames[activeFriend.id] ? nicknames[activeFriend.id] : activeFriend.username }}</div>
           </div>
@@ -137,7 +143,13 @@
             <div v-for="friend in allFriends" :key="friend.id" class="nickname-item">
               <div class="nickname-avatar">
                 <img v-if="friend.profile_picture" :src="friend.profile_picture" :alt="friend.username" />
-                <div v-else class="default-avatar">👤</div>
+                <div v-else class="default-avatar">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="9" r="3"/>
+                    <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+                  </svg>
+                </div>
               </div>
               <div class="nickname-info">
                 <div class="nickname-username">{{ friend.username }}</div>

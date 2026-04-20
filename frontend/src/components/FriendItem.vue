@@ -3,7 +3,13 @@
     <div class="friend-left">
       <div class="avatar" :class="{ 'has-image': !!friend.profile_picture }" @click.stop="openAvatarPreview">
         <img v-if="friend.profile_picture" :src="friend.profile_picture" alt="avatar" />
-        <div v-else class="avatar-placeholder">{{ initials }}</div>
+        <div v-else class="avatar-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="9" r="3"/>
+            <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          </svg>
+        </div>
         <span v-if="showPresence" :class="['avatar-presence-dot', friendPresence && friendPresence.isOnline ? 'online' : 'offline']"></span>
       </div>
       <div class="friend-info">

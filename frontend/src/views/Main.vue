@@ -134,7 +134,13 @@
         <button class="profile-close" @click="friendProfile.show = false">✕</button>
         <div class="profile-avatar">
           <img v-if="friendProfile.user.profile_picture" :src="friendProfile.user.profile_picture" alt="" />
-          <span v-else>{{ String(friendProfile.user.username || '?').slice(0, 2).toUpperCase() }}</span>
+          <span v-else>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="9" r="3"/>
+              <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+            </svg>
+          </span>
         </div>
         <h3>{{ friendProfile.user.username }}</h3>
         <p>ID: {{ friendProfile.user.id }}</p>

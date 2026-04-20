@@ -485,13 +485,13 @@ export default {
   .message-item {
     max-width: 97vw;
     min-width: 44px;
-    font-size: 18px;
-    padding: 16px 22px;
-    border-radius: 22px;
-    margin-bottom: 10px;
+    font-size: 22px;
+    padding: 22px 26px;
+    border-radius: 28px;
+    margin-bottom: 14px;
     margin-left: 2vw;
     margin-right: 2vw;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
     word-break: break-word;
   }
   .message-item.mine {
@@ -507,9 +507,18 @@ export default {
     color: var(--their-text, #000);
   }
   .edited-label {
-    font-size: 15px;
-    margin-left: 6px;
-    padding-left: 3px;
+    font-size: 18px;
+    margin-left: 8px;
+    padding-left: 4px;
+  }
+  .message-avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 14px;
+  }
+  .sender-name {
+    font-size: 18px;
+    margin-bottom: 8px;
   }
 }
 
@@ -521,12 +530,21 @@ export default {
   }
   .message-item {
     max-width: 99vw;
-    font-size: 13px;
-    padding: 8px 8px;
-    border-radius: 14px;
-    margin-bottom: 4px;
+    font-size: 16px;
+    padding: 14px 12px;
+    border-radius: 18px;
+    margin-bottom: 7px;
     margin-left: 1vw;
     margin-right: 1vw;
+  }
+  .message-avatar {
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
+  }
+  .sender-name {
+    font-size: 14px;
+    margin-bottom: 6px;
   }
 }
 

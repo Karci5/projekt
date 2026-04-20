@@ -1,12 +1,10 @@
 <template>
   <div class="messages" ref="list" @scroll="onScroll">
     <MessageItem
-      v-for="(m, i) in messages"
+      v-for="m in messages"
       :key="m.id || m.created_at"
       :message="m"
       :show-sender-name="showSenderName"
-      :show-avatar="shouldShowAvatar(i)"
-      :users="users"
       :open-menu-id="openMenuId"
       @edit="$emit('edit', m)"
       @delete="$emit('delete', m)"
@@ -21,16 +19,21 @@ import MessageItem from './MessageItem.vue'
 export default {
   props: {
     messages: { type: Array, default: () => [] },
-    showSenderName: { type: Boolean, default: false },
-    users: { type: Object, default: null }
+    showSenderName: { type: Boolean, default: false }
   },
   emits: ['edit', 'delete', 'reply'],
   components: { MessageItem },
+  data() {
+    return {
+      shouldScrollToBottom: true,
+      prevMessagesLength: 0,
+      newMessagesCount: 0,
+      openMenuId: null
+    }
+  },
   mounted() {
-    // Inicializuj prevMessagesLength pri mountnutí
     this.prevMessagesLength = this.messages.length;
-    console.log('[mounted] prevMessagesLength:', this.prevMessagesLength);
-    this.scrollToBottom(true);
+    this.scrollToBottom(false);
   },
   beforeUpdate() {
     const el = this.$refs.list;
@@ -49,44 +52,25 @@ export default {
       this.newMessagesCount += added;
     }
   },
-  watch: {
-    messages: {
-      handler(newVal) {
-        console.log('[watch:messages] newVal:', newVal);
-        // Scrolluj dolu len keď je v messages aspoň jedna správa
-        if (Array.isArray(newVal) && newVal.length > 0) {
-          this.$nextTick(() => {
-            console.log('[watch:messages] calling scrollToBottom');
-            this.scrollToBottom(true);
-            this.newMessagesCount = 0;
-          });
-        }
-        this.prevMessagesLength = newVal.length;
-      },
-      immediate: true
+  updated() {
+    if (this.shouldScrollToBottom) {
+      this.scrollToBottom(true);
+      this.newMessagesCount = 0;
     }
+    this.prevMessagesLength = this.messages.length;
   },
   methods: {
-    shouldShowAvatar(idx) {
-      const m = this.messages[idx];
-      // Avatar len pri správach iných používateľov
-      return m && !m.mine;
-    },
     setOpenMenu(id) {
       this.openMenuId = id;
     },
     scrollToBottom(animate = true) {
       const el = this.$refs.list;
-      if (!el) {
-        console.log('[scrollToBottom] $refs.list is null');
-        return;
-      }
+      if (!el) return;
       if (animate && el.scrollTo) {
         el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
       } else {
         el.scrollTop = el.scrollHeight;
       }
-      console.log('[scrollToBottom] scrolled to:', el.scrollTop, '/', el.scrollHeight);
     },
     onScroll() {
       const el = this.$refs.list;
@@ -100,6 +84,7 @@ export default {
       this.newMessagesCount = 0;
     }
   }
+}
 </script>
 
 <style scoped>

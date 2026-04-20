@@ -169,19 +169,25 @@
           <button class="modal-close-x" @click="showMembers = false" aria-label="Zavrieť">✕</button>
         </div>
         <!-- Pridať člena (len admin) -->
-        <div v-if="isGroupAdmin" class="add-member-row" style="margin-bottom: 12px; display: flex; gap: 8px; align-items: center;">
-          <input
-            v-model="addMemberInput"
-            @input="onAddMemberInput"
-            type="text"
-            placeholder="Zadaj aspoň 3 písmená kamaráta"
-            style="flex:1; padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc;"
-          />
-          <button
-            :disabled="addMemberInput.length < 3"
-            @click="addMember"
-            style="padding: 6px 14px; border-radius: 6px; border: none; background: #1877f2; color: #fff; font-weight: 600; cursor: pointer;"
-          >Pridať</button>
+        <div v-if="isGroupAdmin" class="add-member-row" style="margin-bottom: 12px; display: flex; flex-direction:column; gap: 8px; align-items: stretch;">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <input
+              v-model="addMemberInput"
+              @input="onAddMemberInput"
+              type="text"
+              placeholder="Zadaj aspoň 3 písmená kamaráta"
+              style="flex:1; padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc;"
+            />
+          </div>
+          <div v-if="addMemberInput.length >= 3 && filteredFriendsToAdd.length > 0" class="search-results" style="background: #f9f9f9; border-radius: 6px; box-shadow: 0 2px 8px #0001; margin-top: 4px;">
+            <div v-for="friend in filteredFriendsToAdd" :key="friend.id" class="search-result-item" style="display: flex; align-items: center; gap: 8px; padding: 6px 10px; cursor: pointer; border-bottom: 1px solid #eee;" @click="addMember(friend)">
+              <img v-if="friend.profile_picture" :src="friend.profile_picture" alt="" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;" />
+              <span v-else style="width: 28px; height: 28px; border-radius: 50%; background: #ddd; display: flex; align-items: center; justify-content: center; font-weight: bold;">{{ friend.username[0].toUpperCase() }}</span>
+              <span>{{ friend.username }}</span>
+            </div>
+            <div v-if="filteredFriendsToAdd.length === 0" style="padding: 6px 10px; color: #888;">Žiadny výsledok</div>
+          </div>
+          <div v-else-if="addMemberInput.length >= 3 && filteredFriendsToAdd.length === 0" style="padding: 6px 10px; color: #888; background: #f9f9f9; border-radius: 6px; margin-top: 4px;">Žiadny výsledok</div>
         </div>
         <div class="members-list">
           <div v-for="member in members" :key="member.id" class="member-item">
@@ -300,7 +306,9 @@ export default {
       nicknameEditInput: '',
       pendingGroupAvatarData: null,
       avatarPreviewSrc: '',
-      addMemberInput: ''
+      addMemberInput: '',
+      allFriends: [],
+      isLoadingFriends: false,
     }
   },
       openGroupAvatar() {
@@ -334,14 +342,56 @@ export default {
     }
   },
   methods: {
-        onAddMemberInput() {
-          // Prípadne môžeš pridať debounce/search logiku
+        async onAddMemberInput() {
+          // debounce nie je nutný, lebo filtrovanie je len na fronte
         },
-        addMember() {
-          if (this.addMemberInput.length < 3) return;
-          this.$emit('add-member', this.addMemberInput);
-          this.addMemberInput = '';
+        async fetchFriends() {
+          if (!this.currentUserId) return;
+          this.isLoadingFriends = true;
+          try {
+            const res = await fetch(`/api/friends/${this.currentUserId}`);
+            if (res.ok) {
+              this.allFriends = await res.json();
+            }
+          } catch (e) { console.error(e); }
+          this.isLoadingFriends = false;
         },
+        async addMember(friend) {
+          if (!friend || !friend.id) return;
+          // Pridať člena do skupiny cez backend
+          try {
+            const res = await fetch(`/api/groups/${this.activeGroup.id}/invite`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ members: [friend.id] })
+            });
+            if (res.ok) {
+              this.$emit('add-member', friend);
+              this.addMemberInput = '';
+              // Odstrániť pridaného z výsledkov
+              this.allFriends = this.allFriends.filter(f => f.id !== friend.id);
+            } else {
+              alert('Nepodarilo sa pridať člena.');
+            }
+          } catch (e) {
+            alert('Chyba siete pri pridávaní člena.');
+          }
+        },
+      mounted() {
+        if (this.isGroupAdmin) {
+          this.fetchFriends();
+        }
+      },
+      computed: {
+        filteredFriendsToAdd() {
+          // Vráti priateľov, ktorí nie sú v skupine a zodpovedajú hľadanému výrazu
+          const lower = this.addMemberInput.toLowerCase();
+          const groupMemberIds = new Set((this.members || []).map(m => String(m.id)));
+          return (this.allFriends || [])
+            .filter(f => !groupMemberIds.has(String(f.id)))
+            .filter(f => f.username && f.username.toLowerCase().includes(lower));
+        },
+      },
     startEdit(msg) {
       this.editingMessage = msg;
       this.inputValue = msg.message || '';

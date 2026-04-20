@@ -144,8 +144,9 @@
 
       <MessagesList
         ref="messagesList"
-        :messages="messages"
+        :messages="messagesWithAvatars"
         :show-sender-name="true"
+        :is-group="true"
         @edit="startEdit"
         @delete="deleteMessage"
         @reply="startReply"
@@ -326,6 +327,19 @@ export default {
       if (String(this.activeGroup.created_by) === String(this.currentUserId)) return true;
       const me = (this.members || []).find(m => String(m.id) === String(this.currentUserId));
       return !!(me && (me.role === 'admin' || Number(me.is_admin) === 1));
+    },
+    messagesWithAvatars() {
+      // Obohatí každú správu o profilovku podľa sender_id
+      if (!Array.isArray(this.messages) || !Array.isArray(this.members)) return this.messages;
+      return this.messages.map(msg => {
+        if (msg.mine) return msg;
+        const sender = this.members.find(m => String(m.id) === String(msg.sender_id));
+        return {
+          ...msg,
+          profile_picture: msg.profile_picture || (sender && sender.profile_picture) || '',
+          username: msg.username || (sender && sender.username) || '',
+        };
+      });
     }
   },
   watch: {

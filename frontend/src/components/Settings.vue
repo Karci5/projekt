@@ -185,6 +185,7 @@
       <button class="btn-primary" @click="saveAllSettings">Uložiť zmeny</button>
     </div>
   </div>
+</div>
 </template>
 
 <script>

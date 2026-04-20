@@ -26,17 +26,20 @@ export default {
   },
   emits: ['edit', 'delete', 'reply'],
   components: { MessageItem },
-  data() {
-    return {
-      shouldScrollToBottom: true,
-      prevMessagesLength: 0,
-      newMessagesCount: 0,
-      openMenuId: null
+  watch: {
+    messages: {
+      handler(newVal) {
+        // Scrolluj dolu len keď je v messages aspoň jedna správa
+        if (Array.isArray(newVal) && newVal.length > 0) {
+          this.$nextTick(() => {
+            this.scrollToBottom(true);
+            this.newMessagesCount = 0;
+          });
+        }
+        this.prevMessagesLength = newVal.length;
+      },
+      immediate: true
     }
-  },
-  mounted() {
-    this.prevMessagesLength = this.messages.length;
-    this.scrollToBottom(true);
   },
   beforeUpdate() {
     const el = this.$refs.list;

@@ -1,3 +1,251 @@
+/* Pôvodné zarovnanie správ: moje správy vpravo, cudzie vľavo */
+.message-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.message-wrapper.mine {
+  justify-content: flex-end;
+}
+.message-wrapper.other {
+  justify-content: flex-start;
+}
+
+.message-body {
+  display: flex;
+  flex-direction: column;
+  max-width: clamp(70%, 80%, 85%);
+  min-width: 0;
+}
+.message-body.mine {
+  align-items: flex-end;
+}
+.message-body.other {
+  align-items: flex-start;
+}
+
+.message-item {
+  background: var(--their-bubble, #e4e6eb);
+  color: var(--their-text, #000000);
+  padding: 8px 14px;
+  border-radius: 18px;
+  max-width: 80vw;
+  min-width: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: pre-line;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-size: 15px;
+  box-sizing: border-box;
+  text-align: left;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.message-item.mine {
+  background: var(--my-bubble, #1877f2);
+  color: var(--my-text, #ffffff);
+  align-self: flex-end;
+  margin-left: auto;
+}
+.message-item.other {
+  background: var(--their-bubble, #fff0f3);
+  color: var(--their-text, #000);
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.message-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.message-avatar svg {
+  width: 24px;
+  height: 24px;
+  color: #666;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .message-item {
+    max-width: 95vw;
+    min-width: 36px;
+    font-size: 14px;
+    padding: 7px 8px;
+    border-radius: 13px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .message-item.mine {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .message-item.other {
+    margin-right: auto;
+    margin-left: 0;
+  }
+  .message-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .message-item {
+    max-width: 99vw;
+    font-size: 13px;
+    padding: 4px 4px;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .message-avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+}
+/* Pôvodné zarovnanie správ: moje správy vpravo, cudzie vľavo */
+.message-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.message-wrapper.mine {
+  justify-content: flex-end;
+}
+.message-wrapper.other {
+  justify-content: flex-start;
+}
+
+.message-body {
+  display: flex;
+  flex-direction: column;
+  max-width: clamp(70%, 80%, 85%);
+  min-width: 0;
+}
+.message-body.mine {
+  align-items: flex-end;
+}
+.message-body.other {
+  align-items: flex-start;
+}
+
+.message-item {
+  background: var(--their-bubble, #e4e6eb);
+  color: var(--their-text, #000000);
+  padding: 8px 14px;
+  border-radius: 18px;
+  max-width: 80vw;
+  min-width: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: pre-line;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-size: 15px;
+  box-sizing: border-box;
+  text-align: left;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.message-item.mine {
+  background: var(--my-bubble, #1877f2);
+  color: var(--my-text, #ffffff);
+  align-self: flex-end;
+  margin-left: auto;
+}
+.message-item.other {
+  background: var(--their-bubble, #fff0f3);
+  color: var(--their-text, #000);
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.message-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.message-avatar svg {
+  width: 24px;
+  height: 24px;
+  color: #666;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .message-item {
+    max-width: 95vw;
+    min-width: 36px;
+    font-size: 14px;
+    padding: 7px 8px;
+    border-radius: 13px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .message-item.mine {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .message-item.other {
+    margin-right: auto;
+    margin-left: 0;
+  }
+  .message-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .message-item {
+    max-width: 99vw;
+    font-size: 13px;
+    padding: 4px 4px;
+    border-radius: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .message-avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+}
 /* Zarovnanie správ ako na obrázku 2: moje správy vpravo, cudzie vľavo */
 .message-wrapper {
   display: flex;

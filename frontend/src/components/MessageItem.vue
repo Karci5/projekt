@@ -167,23 +167,31 @@
 export default {
   data() {
     return {
-      lightboxOpen: false
+      lightboxOpen: false,
+      onAvatarError: false
     };
   },
   props: {
     message: { type: Object, required: true },
     showSenderName: { type: Boolean, default: false },
     openMenuId: { type: [String, Number], default: null },
-    showAvatar: { type: Boolean, default: true }
+    showAvatar: { type: Boolean, default: true },
+    users: { type: Object, default: null } // users objekt s profilovkami
   },
-            
+
   computed: {
     senderName() {
       return this.message?.username || this.message?.senderName || 'Pouzivatel';
     },
     avatarSrc() {
-      // Skupinový chat: použij profile_picture, alebo ak nie je, vyskúšaj sender_avatar, senderAvatar
+      // 1. Skús profilovku priamo v správe
       let pic = this.message?.profile_picture || this.message?.sender_avatar || this.message?.senderAvatar || null;
+      // 2. Ak nie je, skús users objekt
+      if ((!pic || typeof pic !== 'string' || pic.trim() === '') && this.users) {
+        const uid = this.message?.user_id || this.message?.sender_id;
+        const user = this.users[uid];
+        if (user && user.profile_picture) pic = user.profile_picture;
+      }
       if (!pic || typeof pic !== 'string' || pic.trim() === '') return null;
       if (pic && !pic.includes('/uploads/')) {
         // Ak je tam len názov súboru, doplň prefix

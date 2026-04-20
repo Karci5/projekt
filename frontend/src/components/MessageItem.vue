@@ -52,7 +52,7 @@
 <template>
   <div :class="['message-wrapper', message.mine ? 'mine' : 'other']">
     <div v-if="!message.mine && showAvatar" class="message-avatar">
-      <template v-if="avatarSrc && !onAvatarError">
+      <template v-if="avatarSrc && !onAvatarError && avatarSrc.trim() !== ''">
         <img :src="avatarSrc" alt="Avatar" @error="onAvatarError = true" />
       </template>
       <template v-else>
@@ -63,15 +63,6 @@
             <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
           </svg>
         </span>
-      /* Centrovanie a svetlá farba fallback avataru */
-      .avatar-fallback-letter {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        color: #bdbdbd;
-      }
       </template>
     </div>
 

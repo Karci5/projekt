@@ -634,15 +634,15 @@ export default {
 
 @media (max-width: 600px) {
   .message-item {
-    max-width: 96vw;
-    min-width: 48px;
-    font-size: 17px;
-    padding: 13px 18px;
-    border-radius: 18px;
-    margin-bottom: 6px;
+    max-width: 98vw;
+    min-width: 60px;
+    font-size: 22px;
+    padding: 22px 26px;
+    border-radius: 24px;
+    margin-bottom: 10px;
     flex-direction: column;
     align-items: flex-start;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
   }
 }
 .message-item.mine {
@@ -655,10 +655,10 @@ export default {
 @media (max-width: 400px) {
   .message-item {
     max-width: 99vw;
-    font-size: 15px;
-    padding: 8px 10px;
-    border-radius: 13px;
-    margin-bottom: 4px;
+    font-size: 19px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    margin-bottom: 7px;
   }
 }
 

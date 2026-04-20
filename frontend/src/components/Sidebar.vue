@@ -18,6 +18,8 @@
         <div class="groups-list-scroll">
           <GroupsList :groups="groups" @select="$emit('select-group', $event)" @create-group="$emit('create-group')" />
         </div>
+
+        </div>
       </div>
 
       <div v-else-if="activeTab === 'friends'">
@@ -142,9 +144,24 @@ export default {
   components: { Tabs, FriendList, UserSearch, RequestsList, GroupsList },
   data() {
     return {
-      menuOpen: false
+      menuOpen: false,
+      prevGroupsCount: 0
     };
   },
+        mounted() {
+          this.prevGroupsCount = (this.groups || []).length;
+        },
+        updated() {
+          // Ak pribudla skupina, scrollni na spodok
+          const currCount = (this.groups || []).length;
+          if (currCount > this.prevGroupsCount) {
+            this.$nextTick(() => {
+              const el = this.$el.querySelector('.groups-list-scroll');
+              if (el) el.scrollTop = el.scrollHeight;
+            });
+          }
+          this.prevGroupsCount = currCount;
+        },
       onAvatarLeave() {
         setTimeout(() => {
           if (!this.profileModalHover) this.showProfileModal = false;

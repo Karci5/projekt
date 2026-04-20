@@ -479,6 +479,8 @@ export default {
   border: 2px solid #e4e6eb; /* svetlý okraj pre kontrast */
   width: 100%;
   height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .message-wrapper {

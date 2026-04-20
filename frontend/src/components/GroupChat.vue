@@ -329,17 +329,28 @@ export default {
       return !!(me && (me.role === 'admin' || Number(me.is_admin) === 1));
     },
     messagesWithAvatars() {
-      // Obohatí každú správu o profilovku podľa sender_id
+      // Obohatí každú správu o profilovku podľa sender_id a zabezpečí správnu cestu
       if (!Array.isArray(this.messages) || !Array.isArray(this.members)) return this.messages;
-      return this.messages.map(msg => {
+      const enriched = this.messages.map(msg => {
         if (msg.mine) return msg;
         const sender = this.members.find(m => String(m.id) === String(msg.sender_id));
+        let profile_picture = msg.profile_picture || (sender && sender.profile_picture) || '';
+        // Ak je len názov súboru, pridaj prefix
+        if (profile_picture && typeof profile_picture === 'string' && !profile_picture.includes('/uploads/')) {
+          profile_picture = '/uploads/profile_pictures/' + profile_picture;
+        }
         return {
           ...msg,
-          profile_picture: msg.profile_picture || (sender && sender.profile_picture) || '',
+          profile_picture,
           username: msg.username || (sender && sender.username) || '',
         };
       });
+      // Debug výpis do konzoly
+      if (enriched && enriched.length > 0) {
+        // vypíš len prvých 5 správ pre prehľadnosť
+        console.log('[DEBUG] messagesWithAvatars (first 5):', enriched.slice(0, 5));
+      }
+      return enriched;
     }
   },
   watch: {

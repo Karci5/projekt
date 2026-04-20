@@ -55,12 +55,16 @@ export default {
       this.newMessagesCount += added;
     }
   },
-  updated() {
-    if (this.shouldScrollToBottom) {
-      this.scrollToBottom(true);
-      this.newMessagesCount = 0;
+  watch: {
+    messages(newVal, oldVal) {
+      if (Array.isArray(newVal) && Array.isArray(oldVal)) {
+        if (newVal.length !== oldVal.length && this.shouldScrollToBottom) {
+          this.scrollToBottom(true);
+          this.newMessagesCount = 0;
+        }
+      }
+      this.prevMessagesLength = newVal.length;
     }
-    this.prevMessagesLength = this.messages.length;
   },
   methods: {
     shouldShowAvatar(idx) {
